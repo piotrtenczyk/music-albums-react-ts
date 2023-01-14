@@ -15,7 +15,7 @@ const AlbumDescription = ({ title, artist, price }: AlbumDescriptionProps) => {
 
   return (
     <div style={albumDescriptionStyles}>
-      <AlbumDescriptionEntry value={title} />
+      <AlbumDescriptionEntry isTitle value={title} />
       <AlbumDescriptionEntry value={artist} />
       <AlbumDescriptionEntry value={priceToDisplay} />
     </div>

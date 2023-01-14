@@ -26,7 +26,7 @@ export const getAlbumsFromItunesAlbumData = (
 
     return {
       number: index + 1,
-      coverImageUrl: itunesAlbum?.["im:image"]?.[1]?.label || "",
+      coverImageUrl: itunesAlbum?.["im:image"]?.[2]?.label || "",
       description: {
         title: itunesAlbum["im:name"].label,
         artist: itunesAlbum["im:artist"].label,

@@ -14,8 +14,8 @@ body {
 
 .loader {
   display: inline-block;
-  border: 10px solid #f3f3f3;
-  border-top: 10px solid #3498db;
+  border: 10px solid #c52da4;
+  border-top: 10px solid #28c668;
   border-radius: 50%;
   width: 80px;
   height: 80px;

@@ -9,6 +9,8 @@ const getCoverImageStyle = (imageUrl: string | undefined) => {
     background: "blue",
     backgroundImage: imageUrl === undefined ? "none" : `url("${imageUrl}")`,
     backgroundSize: "contain",
+    borderRadius: "50%",
+    margin: "10px",
   };
 };
 

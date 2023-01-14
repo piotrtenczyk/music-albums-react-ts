@@ -2,7 +2,9 @@
 // Czy to będzie łatwiejsze do zrobienia niz Itunes Albums ? Czy moze trudniejsze
 
 import { useEffect, useState } from "react";
+import CircleLoader from "../common/CircleLoader";
 import Album from "../common/musicAlbum/Album";
+import PageTitle from "../common/PageTitle";
 import fakeFetch from "../dataMocking/fakeFetch";
 import {
   AlbumRawData,
@@ -38,7 +40,13 @@ const OurAlbums = () => {
     // );
   });
 
-  return <>{albumsComponents}</>;
+  return (
+    <>
+      <PageTitle title="Our Favourites" />
+      <CircleLoader show={albumsData === null} />
+      {albumsComponents}
+    </>
+  );
 };
 
 export default OurAlbums;

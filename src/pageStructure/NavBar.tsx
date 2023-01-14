@@ -1,9 +1,9 @@
-import OrangeLink from "../common/OrangeLink";
+import SmallOrangeLink from "../common/SmallOrangeLink";
 
 const NavBar = () => {
   const style = {
-    position: "absolute" as "absolute",
-    top: "30px",
+    position: "fixed" as "sticky",
+    top: "80px",
     left: "0px",
     width: "250px",
   };
@@ -16,25 +16,14 @@ const NavBar = () => {
     <nav style={style}>
       <ul style={listStyle}>
         <li>
-          <OrangeLink to="/">home</OrangeLink>
+          <SmallOrangeLink to="/itunes-albums">
+            iTunes Top Albums
+          </SmallOrangeLink>
         </li>
         <li>
-          <OrangeLink to="employees-list">employee list</OrangeLink>
-        </li>
-        <li>
-          <OrangeLink to="layout-demo">layout demo</OrangeLink>
-        </li>
-        <li>
-          <OrangeLink to="/contact">contact</OrangeLink>
-        </li>
-        <li>
-          <OrangeLink to="/contact2">contact2</OrangeLink>
-        </li>
-        <li>
-          <OrangeLink to="/itunes-albums">itunes albums</OrangeLink>
-        </li>
-        <li>
-          <OrangeLink to="/our-albums">our albums</OrangeLink>
+          <SmallOrangeLink to="/our-albums">
+            Our Favourite Albums
+          </SmallOrangeLink>
         </li>
       </ul>
     </nav>

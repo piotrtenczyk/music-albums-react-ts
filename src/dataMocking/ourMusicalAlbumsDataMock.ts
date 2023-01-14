@@ -14,7 +14,8 @@ const albums: AlbumRawData[] = [
   {
     title: "Toxicity",
     author: "System of down",
-    imageUrl: "https://ecsmedia.pl/c/toxicity-b-iext120304892.jpg",
+    imageUrl:
+      "https://upload.wikimedia.org/wikipedia/en/6/64/SystemofaDownToxicityalbumcover.jpg",
   },
   {
     title: "Hybrid Theory",

@@ -1,8 +1,6 @@
 import React from "react";
-import Clock from "../common/gadgets/Clock";
 import NavBar from "./NavBar";
-import { Outlet } from "react-router-dom";
-import ClickCounter from "../common/gadgets/ClickCounter";
+import { Link, Outlet } from "react-router-dom";
 
 const Page = () => {
   const sectionStyle = {
@@ -11,24 +9,29 @@ const Page = () => {
   };
 
   const headerStyle = {
-    padding: "5px",
+    padding: "25px",
     position: "sticky" as "sticky",
     top: "0",
     background: "black",
     textAlign: "center" as "center",
     display: "flex",
-    justifyContent: "space-between",
-    fontSize: "14px",
-    opacity: "0.7",
+    justifyContent: "center",
+    fontSize: "36px",
+  };
+
+  const headerLinkStyle = {
+    textDecoration: "none",
+    color: "white",
   };
 
   return (
     <div id="page">
-      <NavBar />
       <header style={headerStyle}>
-        ZDFRONpol12 <Clock />
-        <ClickCounter />
+        <Link to="/" style={headerLinkStyle}>
+          Music Albums
+        </Link>
       </header>
+      <NavBar />
       <section style={sectionStyle}>
         <Outlet />
       </section>

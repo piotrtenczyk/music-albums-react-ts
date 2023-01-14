@@ -1,16 +1,14 @@
 import AlbumDescription, { AlbumDescriptionProps } from "./AlbumDescription";
 import AlbumImage from "./AlbumImage";
+import AlbumNumber from "./AlbumNumber";
 
 const albumStyle = {
   display: "flex",
-  margin: "20px",
+  // justifyContent: "space-between",
+  margin: "30px",
   fontSize: "12px",
   background: "#353a45",
-};
-
-const numberStyle = {
-  padding: "5px",
-  background: "black",
+  padding: "10px",
 };
 
 export interface AlbumProps {
@@ -22,7 +20,7 @@ export interface AlbumProps {
 const Album = ({ number, coverImageUrl, description }: AlbumProps) => {
   return (
     <div style={albumStyle}>
-      <div style={numberStyle}>{number}</div>
+      <AlbumNumber value={number} />
       <AlbumImage imageUrl={coverImageUrl} />
       <AlbumDescription
         title={description.title}
