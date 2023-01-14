@@ -1,0 +1,52 @@
+body {
+  background-color: #282c34;
+  min-height: 100vh;
+  font-size: calc(10px + 2vmin);
+  color: white;
+  margin: 0;
+}
+.colorRed {
+  color: red;
+}
+.colorBlue {
+  color: rgb(72, 0, 255);
+}
+
+.loader {
+  display: inline-block;
+  border: 10px solid #f3f3f3;
+  border-top: 10px solid #3498db;
+  border-radius: 50%;
+  width: 80px;
+  height: 80px;
+  animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+.timer {
+  border: 6px skyblue solid;
+  padding: 20px;
+  margin: 20px;
+  width: 80px;
+  height: 80px;
+  border-radius: 50px;
+  cursor: pointer;
+}
+
+.header {
+  position: fixed;
+  width: 100%;
+  border-bottom: 2px solid skyblue;
+  left: 0;
+  right: 0;
+  text-align: center;
+  top: 0;
+}
