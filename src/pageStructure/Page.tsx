@@ -5,8 +5,7 @@ import ShoppingCartIcon from "../common/ShoppingCartIcon";
 
 const Page = () => {
   const sectionStyle = {
-    marginLeft: "250px",
-    marginTop: "30px",
+    margin: "30px 30px 30px 250px",
   };
 
   const headerStyle = {

@@ -34,8 +34,8 @@ const ShoppingCartIcon = () => {
     <div style={{ position: "relative" }}>
       <Link to="/shopping-cart" style={linkStyle}>
         🛒
+        {numberIcon}
       </Link>
-      {numberIcon}
     </div>
   );
 };

@@ -24,7 +24,11 @@ const OurAlbums = () => {
   }, []);
 
   const albumsComponents = albumsData?.map((album, index) => {
-    const albumDescription = { title: album.title, artist: album.author };
+    const albumDescription = {
+      title: album.title,
+      artist: album.author,
+      price: 9.99,
+    };
 
     return (
       <Album

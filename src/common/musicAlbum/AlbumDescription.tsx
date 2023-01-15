@@ -7,17 +7,15 @@ const albumDescriptionStyles = {
 export interface AlbumDescriptionProps {
   title: string;
   artist: string;
-  price?: number;
+  price: number;
 }
 
 const AlbumDescription = ({ title, artist, price }: AlbumDescriptionProps) => {
-  const priceToDisplay = price || "N/A";
-
   return (
     <div style={albumDescriptionStyles}>
       <AlbumDescriptionEntry isTitle value={title} />
       <AlbumDescriptionEntry value={artist} />
-      <AlbumDescriptionEntry value={priceToDisplay} />
+      <AlbumDescriptionEntry value={price} />
     </div>
   );
 };
