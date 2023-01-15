@@ -1,4 +1,6 @@
+import { useSelector } from "react-redux";
 import { Link } from "react-router-dom";
+import { RootState } from "../state/store";
 
 const linkStyle = {
   textDecoration: "none",
@@ -7,24 +9,33 @@ const linkStyle = {
 
 const numberOfItemsStyle = {
   position: "absolute" as "absolute",
-  top: "15px",
+  top: "17px",
   left: "18px",
   background: "yellow",
   borderRadius: "50%",
-
-  width: "30px",
-  height: "30px",
-  fontSize: "27px",
+  border: "2px solid grey",
+  width: "28px",
+  height: "28px",
+  fontSize: "25px",
   color: "black",
 };
 
 const ShoppingCartIcon = () => {
+  const numberOfItems = useSelector(
+    (state: RootState) => state.shoppingCart.numberOfItems
+  );
+
+  const numberIcon =
+    numberOfItems > 0 ? (
+      <span style={numberOfItemsStyle}>{numberOfItems}</span>
+    ) : null;
+
   return (
     <div style={{ position: "relative" }}>
       <Link to="/shopping-cart" style={linkStyle}>
         🛒
       </Link>
-      <span style={numberOfItemsStyle}>5</span>
+      {numberIcon}
     </div>
   );
 };

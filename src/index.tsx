@@ -8,7 +8,7 @@ import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import Page from "./pageStructure/Page";
 import ItunesAlbumList from "./pages/ItunesAlbumList/ItunesAlbumList";
 import OurAlbums from "./pages/OurAlbums";
-import ShoppingCart from "./common/ShoppingCart";
+import ShoppingCartPage from "./pages/ShoppingCartPage";
 import store from "./state/store";
 
 const router = createBrowserRouter([
@@ -34,7 +34,7 @@ const router = createBrowserRouter([
       },
       {
         path: "/shopping-cart",
-        element: <ShoppingCart />,
+        element: <ShoppingCartPage />,
       },
     ],
   },

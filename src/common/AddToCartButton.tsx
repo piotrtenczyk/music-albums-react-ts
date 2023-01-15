@@ -4,8 +4,16 @@ const buttonStyle = {
   cursor: "pointer",
 };
 
-const AddToCartButton = () => {
-  return <button style={buttonStyle}>Add</button>;
+interface AddToCartButtonProps {
+  onClick: () => void;
+}
+
+const AddToCartButton: React.FC<AddToCartButtonProps> = ({ onClick }) => {
+  return (
+    <button style={buttonStyle} onClick={onClick}>
+      Add
+    </button>
+  );
 };
 
 export default AddToCartButton;

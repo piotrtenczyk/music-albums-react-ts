@@ -1,3 +1,5 @@
+import { useDispatch } from "react-redux";
+import { ADD_ALBUM_TO_CART } from "../../state/shoppingCart/shoppingCartActions";
 import AddToCartButton from "../AddToCartButton";
 import AlbumDescription, { AlbumDescriptionProps } from "./AlbumDescription";
 import AlbumImage from "./AlbumImage";
@@ -20,6 +22,13 @@ export interface AlbumProps {
 }
 
 const Album = ({ number, coverImageUrl, description }: AlbumProps) => {
+  const dispatch = useDispatch();
+
+  const addItemToCart = () => {
+    dispatch({ type: ADD_ALBUM_TO_CART, albumDescription: description });
+    console.log(description);
+  };
+
   return (
     <div style={albumStyle}>
       <AlbumNumber value={number} />
@@ -29,7 +38,7 @@ const Album = ({ number, coverImageUrl, description }: AlbumProps) => {
         artist={description.artist}
         price={description.price}
       />
-      <AddToCartButton />
+      <AddToCartButton onClick={addItemToCart} />
     </div>
   );
 };
