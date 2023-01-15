@@ -1,9 +1,11 @@
+import AddToCartButton from "../AddToCartButton";
 import AlbumDescription, { AlbumDescriptionProps } from "./AlbumDescription";
 import AlbumImage from "./AlbumImage";
 import AlbumNumber from "./AlbumNumber";
 
 const albumStyle = {
   display: "flex",
+  alignItems: "center",
   // justifyContent: "space-between",
   margin: "30px",
   fontSize: "12px",
@@ -27,6 +29,7 @@ const Album = ({ number, coverImageUrl, description }: AlbumProps) => {
         artist={description.artist}
         price={description.price}
       />
+      <AddToCartButton />
     </div>
   );
 };

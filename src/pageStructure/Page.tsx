@@ -15,7 +15,7 @@ const Page = () => {
     background: "black",
     textAlign: "center" as "center",
     display: "flex",
-    justifyContent: "center",
+    justifyContent: "space-between",
     fontSize: "36px",
   };
 
@@ -29,6 +29,9 @@ const Page = () => {
       <header style={headerStyle}>
         <Link to="/" style={headerLinkStyle}>
           Music Albums
+        </Link>
+        <Link to="/shopping-cart" style={headerLinkStyle}>
+          🛒
         </Link>
       </header>
       <NavBar />
