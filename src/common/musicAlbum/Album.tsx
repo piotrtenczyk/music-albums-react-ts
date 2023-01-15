@@ -26,7 +26,6 @@ const Album = ({ number, coverImageUrl, description }: AlbumProps) => {
 
   const addItemToCart = () => {
     dispatch({ type: ADD_ALBUM_TO_CART, albumDescription: description });
-    console.log(description);
   };
 
   return (
