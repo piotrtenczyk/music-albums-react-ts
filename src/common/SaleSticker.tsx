@@ -1,0 +1,19 @@
+const stickerStyle = {
+  color: "black",
+  background: "yellow",
+  fontWeight: "800",
+  fontFamily: "'Courier New', monospace",
+  border: "2px solid black",
+  padding: "3px",
+};
+
+interface SaleStickerProps {
+  show: boolean;
+}
+
+const SaleSticker: React.FC<SaleStickerProps> = ({ show }) => {
+  if (!show) return null;
+  return <div style={stickerStyle}>SALE</div>;
+};
+
+export default SaleSticker;
