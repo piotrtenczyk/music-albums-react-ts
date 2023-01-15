@@ -1,6 +1,7 @@
 import React from "react";
 import NavBar from "./NavBar";
 import { Link, Outlet } from "react-router-dom";
+import ShoppingCartIcon from "../common/ShoppingCartIcon";
 
 const Page = () => {
   const sectionStyle = {
@@ -30,9 +31,7 @@ const Page = () => {
         <Link to="/" style={headerLinkStyle}>
           Music Albums
         </Link>
-        <Link to="/shopping-cart" style={headerLinkStyle}>
-          🛒
-        </Link>
+        <ShoppingCartIcon />
       </header>
       <NavBar />
       <section style={sectionStyle}>

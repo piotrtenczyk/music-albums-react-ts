@@ -3,8 +3,8 @@ import { RootState } from "../state/store";
 import PageTitle from "./PageTitle";
 
 const ShoppingCart = () => {
-  const messageFromExampleReducer = useSelector(
-    (state: RootState) => state.exampleReducer.message
+  const numberOfItems = useSelector(
+    (state: RootState) => state.shoppingCartReducer.numberOfItems
   );
 
   return (
@@ -12,7 +12,9 @@ const ShoppingCart = () => {
       <PageTitle title="Shopping Cart" />
       TODO: make your items appear here
       <br />
-      Message from example reducer is : {messageFromExampleReducer}
+      <br />
+      <br />
+      numberOfItems is : {numberOfItems}
     </>
   );
 };

@@ -1,17 +1,6 @@
 import { combineReducers } from "redux";
-
-interface ExampleReducerState {
-  message: string;
-}
-
-const exampleReducerInitialState: ExampleReducerState = {
-  message: "Hello I'm your reducer ",
-};
-
-const exampleReducer = (): ExampleReducerState => {
-  return exampleReducerInitialState;
-};
+import shoppingCartReducer from "./shoppingCartReducer";
 
 export default combineReducers({
-  exampleReducer,
+  shoppingCartReducer,
 });
