@@ -1,7 +1,9 @@
 const buttonStyle = {
   background: "rgb(237, 92, 145)",
-  height: "40px",
   cursor: "pointer",
+  border: "none",
+  borderRadius: "4px",
+  padding: "12px",
 };
 
 interface AddToCartButtonProps {

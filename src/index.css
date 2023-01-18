@@ -1,4 +1,9 @@
+* {
+  box-sizing: border-box;
+}
+
 body {
+  font-family: 'Courier New', monospace;
   background-color: #282c34;
   min-height: 100vh;
   font-size: calc(10px + 2vmin);
@@ -39,14 +44,4 @@ body {
   height: 80px;
   border-radius: 50px;
   cursor: pointer;
-}
-
-.header {
-  position: fixed;
-  width: 100%;
-  border-bottom: 2px solid skyblue;
-  left: 0;
-  right: 0;
-  text-align: center;
-  top: 0;
 }

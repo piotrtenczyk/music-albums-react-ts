@@ -2,30 +2,30 @@ import SmallOrangeLink from "../common/SmallOrangeLink";
 
 const NavBar = () => {
   const style = {
-    position: "fixed" as "sticky",
-    top: "80px",
-    left: "0px",
-    width: "250px",
+    gridArea: "navbar",
   };
 
-  const listStyle = {
-    listStyleType: "none",
+  const navLinkStyle = {
+    display: "inline-block",
+    margin: "10px",
+    background: "rgb(53 58 69)",
+    padding: "10px",
   };
 
   return (
     <nav style={style}>
-      <ul style={listStyle}>
-        <li>
+      <div>
+        <span style={navLinkStyle}>
           <SmallOrangeLink to="/itunes-albums">
             iTunes Top Albums
           </SmallOrangeLink>
-        </li>
-        <li>
+        </span>
+        <span style={navLinkStyle}>
           <SmallOrangeLink to="/our-albums">
             Our Favourite Albums
           </SmallOrangeLink>
-        </li>
-      </ul>
+        </span>
+      </div>
     </nav>
   );
 };
