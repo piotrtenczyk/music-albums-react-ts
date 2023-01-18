@@ -1,31 +1,32 @@
+import { useMediaQuery } from "react-responsive";
 import SmallOrangeLink from "../common/SmallOrangeLink";
+const getStyle = (isBigScreen: boolean) => {
+  return {
+    gridArea: "navbar",
+    display: "flex",
+    ...(isBigScreen && { flexDirection: "column" as "column" }),
+    ...(!isBigScreen && { justifyContent: "center" }),
+  };
+};
+
+const navLinkStyle = {
+  display: "inline-block",
+  margin: "10px",
+  background: "rgb(53 58 69)",
+  padding: "10px",
+};
 
 const NavBar = () => {
-  const style = {
-    position: "fixed" as "sticky",
-    top: "80px",
-    left: "0px",
-    width: "250px",
-  };
-
-  const listStyle = {
-    listStyleType: "none",
-  };
+  const isBigScreen = useMediaQuery({ query: "(min-width: 800px)" });
 
   return (
-    <nav style={style}>
-      <ul style={listStyle}>
-        <li>
-          <SmallOrangeLink to="/itunes-albums">
-            iTunes Top Albums
-          </SmallOrangeLink>
-        </li>
-        <li>
-          <SmallOrangeLink to="/our-albums">
-            Our Favourite Albums
-          </SmallOrangeLink>
-        </li>
-      </ul>
+    <nav style={getStyle(isBigScreen)}>
+      <span style={navLinkStyle}>
+        <SmallOrangeLink to="/itunes-albums">iTunes Top Albums</SmallOrangeLink>
+      </span>
+      <span style={navLinkStyle}>
+        <SmallOrangeLink to="/our-albums">Our Favourite Albums</SmallOrangeLink>
+      </span>
     </nav>
   );
 };

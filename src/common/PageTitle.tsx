@@ -1,4 +1,5 @@
 const style = {
+  marginTop: "30px",
   marginBottom: "40px",
   textAlign: "center" as "center",
   fontFamily: "'Courier New', monospace",

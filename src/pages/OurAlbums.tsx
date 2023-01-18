@@ -1,6 +1,3 @@
-// Jak wyswietlic nasze albumy?
-// Czy to będzie łatwiejsze do zrobienia niz Itunes Albums ? Czy moze trudniejsze
-
 import { useEffect, useState } from "react";
 import CircleLoader from "../common/CircleLoader";
 import Album from "../common/musicAlbum/Album";
@@ -24,7 +21,11 @@ const OurAlbums = () => {
   }, []);
 
   const albumsComponents = albumsData?.map((album, index) => {
-    const albumDescription = { title: album.title, artist: album.author };
+    const albumDescription = {
+      title: album.title,
+      artist: album.author,
+      price: 9.99,
+    };
 
     return (
       <Album
@@ -34,10 +35,6 @@ const OurAlbums = () => {
         description={albumDescription}
       />
     );
-
-    // return (
-    //   <ItunesAlbum place={index + 1} albumDataEntry={tempAlbumDataEntry} />
-    // );
   });
 
   return (

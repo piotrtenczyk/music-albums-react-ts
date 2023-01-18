@@ -4,8 +4,8 @@ import AlbumNumber from "./AlbumNumber";
 
 const albumStyle = {
   display: "flex",
-  // justifyContent: "space-between",
-  margin: "30px",
+  alignItems: "center",
+  margin: "30px 20px 30px 20px",
   fontSize: "12px",
   background: "#353a45",
   padding: "10px",

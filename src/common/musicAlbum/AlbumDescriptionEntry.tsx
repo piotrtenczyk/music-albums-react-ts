@@ -1,3 +1,5 @@
+import AlbumTitle from "./AlbumTitle";
+
 const descriptionEntryStyle = {
   margin: "10px",
 };
@@ -5,14 +7,9 @@ const descriptionEntryStyle = {
 const getStyle = (isAlbum: boolean | undefined) => {
   return {
     ...descriptionEntryStyle,
-    color: isAlbum ? "#d8ed5c9c" : "inherit",
-    fontWeight: isAlbum ? "bold" : "200",
-    fontSize: isAlbum ? "24px" : "14px",
-    fontFamily: isAlbum ? "'Courier New', monospace" : "inherit",
-    width: "380px",
-    textOverflow: "ellipsis",
-    overflow: "hidden",
-    whiteSpace: "nowrap" as "nowrap",
+    fontWeight: "200",
+    fontSize: "14px",
+    width: "330px",
   };
 };
 
@@ -25,7 +22,13 @@ const AlbumDescriptionEntry = ({
   value,
   isTitle,
 }: AlbumDescriptionEntryProps) => {
-  return <div style={getStyle(isTitle)}>{value}</div>;
+  const toRender = isTitle ? (
+    <AlbumTitle>{value}</AlbumTitle>
+  ) : (
+    <div style={getStyle(isTitle)}>{value}</div>
+  );
+
+  return toRender;
 };
 
 export default AlbumDescriptionEntry;
