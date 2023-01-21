@@ -1,8 +1,8 @@
-import { AlbumDescriptionProps } from "./musicAlbum/AlbumDescription";
+import { AlbumShoppingCartItem } from "../state/shoppingCart/shoppingCartReducer";
 import AlbumTitle from "./musicAlbum/AlbumTitle";
 
 interface ShoppingCartItemProps {
-  description: AlbumDescriptionProps;
+  description: AlbumShoppingCartItem;
 }
 
 const cartItemStyle = {
@@ -12,11 +12,17 @@ const cartItemStyle = {
   padding: "5px",
 };
 
+const quantityStyle = {
+  fontSize: "15px",
+  padding: "0 20px",
+};
+
 const ShoppingCartItem: React.FC<ShoppingCartItemProps> = ({ description }) => {
   return (
     <div style={cartItemStyle}>
       <AlbumTitle>{description.title}</AlbumTitle>
       <span>{description.price}</span>
+      <span style={quantityStyle}> x {description.quantity}</span>
     </div>
   );
 };
