@@ -1,4 +1,4 @@
-import { AlbumProps } from "../../common/musicAlbum/Album";
+import { AlbumDescriptionProps } from "../../common/musicAlbum/AlbumDescription";
 
 interface ObjectWithlabel {
   label: string;
@@ -25,9 +25,16 @@ export interface ItunesAlbumDataEntry {
   "im:image"?: ObjectWithlabel[];
 }
 
+export interface AlbumPresentationData {
+  id: string;
+  number: number;
+  coverImageUrl: string;
+  description: AlbumDescriptionProps;
+}
+
 export const getAlbumsFromItunesAlbumData = (
   itunesAlbumEntries: ItunesAlbumDataEntry[]
-): AlbumProps[] => {
+): AlbumPresentationData[] => {
   const transformedData = itunesAlbumEntries.map((itunesAlbum, index) => {
     const priceValueFromItunes = itunesAlbum?.["im:price"]?.attributes.amount;
 

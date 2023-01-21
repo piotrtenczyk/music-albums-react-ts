@@ -9,11 +9,12 @@ const stickerStyle = {
 
 interface SaleStickerProps {
   show: boolean;
+  value?: number;
 }
 
-const SaleSticker: React.FC<SaleStickerProps> = ({ show }) => {
+const SaleSticker: React.FC<SaleStickerProps> = ({ show, value }) => {
   if (!show) return null;
-  return <div style={stickerStyle}>SALE</div>;
+  return <div style={stickerStyle}>{value}% Off!</div>;
 };
 
 export default SaleSticker;

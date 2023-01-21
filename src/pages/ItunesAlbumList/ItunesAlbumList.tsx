@@ -1,55 +1,37 @@
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
 import Album from "../../common/musicAlbum/Album";
 import CircleLoader from "../../common/CircleLoader";
 import PageTitle from "../../common/PageTitle";
-import {
-  getAlbumsFromItunesAlbumData,
-  ItunesAlbumDataEntry,
-} from "./itunesDataTransformer";
-
-const addDelay = () => {
-  return new Promise((resolve) =>
-    setTimeout(() => {
-      resolve(null);
-    }, 1000)
-  );
-};
-
-interface ItunesTopAlbumsResponseData {
-  feed: {
-    entry: ItunesAlbumDataEntry[];
-  };
-}
+import { fetchAlbumsThunk } from "../../state/itunesAlbums/itunesAlbumsActions";
+import { useAppDispatch, useAppSelector } from "../../state/stateHooks";
+import { fetchSalesIfNotPresent } from "../../state/sales/salesActions";
+import { GREATER_THEN } from "../../dataMocking/salesDataMock";
 
 const ItunesAlbumList = () => {
-  const [albumDataEntries, setAlbumDataEntries] = useState<
-    ItunesAlbumDataEntry[] | null
-  >(null);
-
+  const dispatch = useAppDispatch();
   useEffect(() => {
-    const fetchAndSetAlbums = async () => {
-      const fetchResponse = await fetch(
-        "https://itunes.apple.com/us/rss/topalbums/limit=100/json"
-      );
+    dispatch(fetchAlbumsThunk);
+    dispatch(fetchSalesIfNotPresent);
+  }, [dispatch]);
 
-      await addDelay();
+  const presentationData = useAppSelector(
+    (state) => state.itunesAlbums.presentationData
+  );
 
-      const fetchedData =
-        (await fetchResponse.json()) as ItunesTopAlbumsResponseData;
+  const sales = useAppSelector((state) => state.sales);
 
-      setAlbumDataEntries(fetchedData.feed.entry);
-    };
+  const albumComponents = presentationData.data.map((album) => {
+    // Business rule: Itunes album can only go on sale if a rule based sale is present
 
-    fetchAndSetAlbums();
-  }, []);
+    const ruleBasedSale = sales.data?.find((sale) => !!sale.rule);
+    const isOnSale =
+      ruleBasedSale?.rule?.type === GREATER_THEN &&
+      album.description.price > ruleBasedSale?.rule?.value;
+    const saleValue = ruleBasedSale?.amountInPercent;
 
-  const albumData = albumDataEntries
-    ? getAlbumsFromItunesAlbumData(albumDataEntries)
-    : [];
-
-  const albumComponents = albumData?.map((album) => {
     return (
       <Album
+        saleValue={isOnSale ? saleValue : undefined}
         key={album.number}
         number={album.number}
         coverImageUrl={album.coverImageUrl}
@@ -61,7 +43,7 @@ const ItunesAlbumList = () => {
   return (
     <>
       <PageTitle title="Top Albums" />
-      <CircleLoader show={albumDataEntries === null} />
+      <CircleLoader show={presentationData.loading && sales.loading} />
       {albumComponents}
     </>
   );
