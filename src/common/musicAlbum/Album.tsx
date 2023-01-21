@@ -31,7 +31,11 @@ const Album = ({
   const dispatch = useDispatch();
 
   const addItemToCart = () => {
-    dispatch({ type: ADD_ALBUM_TO_CART, albumDescription: description });
+    dispatch({
+      type: ADD_ALBUM_TO_CART,
+      albumDescription: description,
+      saleValue,
+    });
   };
 
   return (

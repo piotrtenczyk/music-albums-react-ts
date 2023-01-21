@@ -12,17 +12,24 @@ const cartItemStyle = {
   padding: "5px",
 };
 
-const quantityStyle = {
+const smallTextStyle = {
   fontSize: "15px",
   padding: "0 20px",
 };
 
 const ShoppingCartItem: React.FC<ShoppingCartItemProps> = ({ description }) => {
+  const discountMessage = description.salePercentDiscount ? (
+    <span style={smallTextStyle}>
+      after discount {description.priceAfterDiscount}
+    </span>
+  ) : null;
+
   return (
     <div style={cartItemStyle}>
       <AlbumTitle>{description.title}</AlbumTitle>
-      <span>{description.price}</span>
-      <span style={quantityStyle}> x {description.quantity}</span>
+      <span style={smallTextStyle}>{description.price}</span>
+      <span style={smallTextStyle}> (x{description.quantity})</span>
+      {discountMessage}
     </div>
   );
 };

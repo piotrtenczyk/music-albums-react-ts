@@ -17,7 +17,9 @@ const ShoppingCartPage = () => {
       <br />
       {cartItems}
       <br />
-      Total cost is: <b>{shoppingCart.totalPrice}</b>
+      Total before discount: <b>{shoppingCart.totalPrice}</b>
+      <br />
+      Total after discount: <b>{shoppingCart.totalPriceAfterDiscount}</b>
     </>
   );
 };

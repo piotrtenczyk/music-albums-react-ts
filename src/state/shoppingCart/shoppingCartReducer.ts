@@ -4,20 +4,24 @@ import { ADD_ALBUM_TO_CART, ShoppingCartAction } from "./shoppingCartActions";
 export interface AlbumShoppingCartItem {
   title: string;
   artist: string;
-  price: number;
   quantity: number;
+  salePercentDiscount: number;
+  price: number;
+  priceAfterDiscount: number;
 }
 
 interface ShoppingCartState {
   numberOfItems: number;
   items: AlbumShoppingCartItem[];
   totalPrice: number;
+  totalPriceAfterDiscount: number;
 }
 
 const initialState: ShoppingCartState = {
   numberOfItems: 0,
   items: [],
   totalPrice: 0,
+  totalPriceAfterDiscount: 0,
 };
 
 const albumsAreEqual = (
@@ -27,13 +31,28 @@ const albumsAreEqual = (
   return album1.title === album2.title && album1.artist === album2.artist;
 };
 
+const normalizePrice = (price: number) => {
+  return Number(price.toFixed(2));
+};
+
 const shoppingCartReducer = (
   state: ShoppingCartState = initialState,
   action: ShoppingCartAction
 ) => {
   switch (action.type) {
     case ADD_ALBUM_TO_CART: {
-      const newAlbum = { ...action.albumDescription, quantity: 1 };
+      const discountValue = action.saleValue
+        ? (action.saleValue * action.albumDescription.price) / 100
+        : 0;
+
+      const priceAfterDiscount = action.albumDescription.price - discountValue;
+
+      const newAlbum = {
+        ...action.albumDescription,
+        quantity: 1,
+        salePercentDiscount: action.saleValue,
+        priceAfterDiscount: normalizePrice(priceAfterDiscount),
+      };
 
       const albumsMatchinNewAlbumFromAction = state.items.filter((item) =>
         albumsAreEqual(item, newAlbum)
@@ -60,11 +79,18 @@ const shoppingCartReducer = (
         0
       );
 
+      const totalPriceAfterDiscount = newItems.reduce(
+        (accumulator: number, currentItem) =>
+          accumulator + currentItem.priceAfterDiscount * currentItem.quantity,
+        0
+      );
+
       return {
         ...state,
         items: newItems,
         numberOfItems: state.numberOfItems + 1,
-        totalPrice,
+        totalPrice: normalizePrice(totalPrice),
+        totalPriceAfterDiscount: normalizePrice(totalPriceAfterDiscount),
       };
     }
 
