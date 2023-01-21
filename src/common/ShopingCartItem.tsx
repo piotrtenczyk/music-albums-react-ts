@@ -6,6 +6,8 @@ interface ShoppingCartItemProps {
 }
 
 const cartItemStyle = {
+  display: "flex",
+  alignItems: "center",
   border: "2px solid grey",
   borderRadius: "5px",
   margin: "10px",
@@ -17,6 +19,12 @@ const smallTextStyle = {
   padding: "0 20px",
 };
 
+const removeButtonStyle = {
+  padding: "10px",
+  cursor: "pointer",
+  userSelect: "none" as "none",
+};
+
 const ShoppingCartItem: React.FC<ShoppingCartItemProps> = ({ description }) => {
   const discountMessage = description.salePercentDiscount ? (
     <span style={smallTextStyle}>
@@ -24,12 +32,19 @@ const ShoppingCartItem: React.FC<ShoppingCartItemProps> = ({ description }) => {
     </span>
   ) : null;
 
+  const removeItem: React.MouseEventHandler<HTMLSpanElement> = (e) => {
+    console.log(description);
+  };
+
   return (
     <div style={cartItemStyle}>
       <AlbumTitle>{description.title}</AlbumTitle>
       <span style={smallTextStyle}>{description.price}</span>
       <span style={smallTextStyle}> (x{description.quantity})</span>
       {discountMessage}
+      <span onClick={removeItem} style={removeButtonStyle}>
+        🗑
+      </span>
     </div>
   );
 };
