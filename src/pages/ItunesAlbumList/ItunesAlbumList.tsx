@@ -41,11 +41,13 @@ const ItunesAlbumList = () => {
     );
   });
 
+  const isLoading = presentationData.loading || sales.loading;
+
   return (
     <>
       <PageTitle title="Top Albums" />
-      <CircleLoader show={presentationData.loading || sales.loading} />
-      {albumComponents}
+      <CircleLoader show={isLoading} />
+      {!isLoading && albumComponents}
     </>
   );
 };

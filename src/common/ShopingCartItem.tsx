@@ -1,4 +1,7 @@
-import { REMOVE_ALBUM_FROM_CART } from "../state/shoppingCart/shoppingCartActions";
+import {
+  dispatchShoppingAction,
+  REMOVE_ALBUM_FROM_CART,
+} from "../state/shoppingCart/shoppingCartActions";
 import { AlbumShoppingCartItem } from "../state/shoppingCart/shoppingCartReducer";
 import { useAppDispatch } from "../state/stateHooks";
 import AlbumTitle from "./musicAlbum/AlbumTitle";
@@ -41,7 +44,7 @@ const ShoppingCartItem: React.FC<ShoppingCartItemProps> = ({
   const dispatch = useAppDispatch();
 
   const removeItem: React.MouseEventHandler<HTMLSpanElement> = (e) => {
-    dispatch({ type: REMOVE_ALBUM_FROM_CART, id });
+    dispatch(dispatchShoppingAction({ type: REMOVE_ALBUM_FROM_CART, id }));
   };
 
   return (

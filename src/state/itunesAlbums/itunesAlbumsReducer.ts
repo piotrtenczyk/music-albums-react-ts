@@ -34,7 +34,7 @@ const initialState: ItunesAlbumsState = {
 const itunesAlbumsReducer = (
   state: ItunesAlbumsState = initialState,
   action: ItunesAlbumsActions
-) => {
+): ItunesAlbumsState => {
   switch (action.type) {
     case SET_ITUNES_ALBUMS_RAW_DATA: {
       return {

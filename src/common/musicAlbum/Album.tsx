@@ -1,6 +1,9 @@
-import { useDispatch } from "react-redux";
-import { ADD_ALBUM_TO_CART } from "../../state/shoppingCart/shoppingCartActions";
-import { useAppSelector } from "../../state/stateHooks";
+import {
+  dispatchShoppingAction,
+  ADD_ALBUM_TO_CART,
+  ShoppingCartAction,
+} from "../../state/shoppingCart/shoppingCartActions";
+import { useAppDispatch, useAppSelector } from "../../state/stateHooks";
 import { RootState } from "../../state/store";
 import AddToCartButton from "../AddToCartButton";
 import ShoppingCartIcon from "../ShoppingCartIcon";
@@ -40,7 +43,7 @@ const Album = ({
   description,
   discountPercent,
 }: AlbumProps) => {
-  const dispatch = useDispatch();
+  const dispatch = useAppDispatch();
 
   const correspondingShoppingCartItem = useAppSelector((state: RootState) =>
     state.shoppingCart.items.find((item) => item.id === id)
@@ -49,12 +52,13 @@ const Album = ({
   const quantityInShoppingCart = correspondingShoppingCartItem?.quantity || 0;
 
   const addItemToCart = () => {
-    dispatch({
+    const addAction = {
       type: ADD_ALBUM_TO_CART,
       id,
       albumDescription: description,
-      discountPercent,
-    });
+      discountPercent: 0,
+    } as ShoppingCartAction;
+    dispatch(dispatchShoppingAction(addAction));
   };
 
   const cartIndicator =

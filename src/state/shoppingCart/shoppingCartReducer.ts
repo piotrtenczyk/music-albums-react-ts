@@ -2,6 +2,7 @@ import {
   ADD_ALBUM_TO_CART,
   REMOVE_ALBUM_FROM_CART,
   ShoppingCartAction,
+  SHOPPING_CART_LOCAL_STORAGE_KEY,
 } from "./shoppingCartActions";
 import { applyDiscount, calculateTotalPrice } from "./shoppingUtils";
 
@@ -29,8 +30,15 @@ const initialState: ShoppingCartState = {
   totalPriceAfterDiscount: 0,
 };
 
+const getInitialState = () => {
+  const localStorageState = localStorage.getItem(
+    SHOPPING_CART_LOCAL_STORAGE_KEY
+  );
+  return localStorageState ? JSON.parse(localStorageState) : initialState;
+};
+
 const shoppingCartReducer = (
-  state: ShoppingCartState = initialState,
+  state: ShoppingCartState = getInitialState(),
   action: ShoppingCartAction
 ): ShoppingCartState => {
   switch (action.type) {
