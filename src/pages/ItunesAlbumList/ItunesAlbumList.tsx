@@ -44,7 +44,7 @@ const ItunesAlbumList = () => {
   return (
     <>
       <PageTitle title="Top Albums" />
-      <CircleLoader show={presentationData.loading && sales.loading} />
+      <CircleLoader show={presentationData.loading || sales.loading} />
       {albumComponents}
     </>
   );
