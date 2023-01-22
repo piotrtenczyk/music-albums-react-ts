@@ -16,6 +16,7 @@ const albumStyle = {
 };
 
 export interface AlbumProps {
+  id: string;
   number: number;
   coverImageUrl: string;
   description: AlbumDescriptionProps;
@@ -23,6 +24,7 @@ export interface AlbumProps {
 }
 
 const Album = ({
+  id,
   number,
   coverImageUrl,
   description,
@@ -33,6 +35,7 @@ const Album = ({
   const addItemToCart = () => {
     dispatch({
       type: ADD_ALBUM_TO_CART,
+      id,
       albumDescription: description,
       saleValue,
     });

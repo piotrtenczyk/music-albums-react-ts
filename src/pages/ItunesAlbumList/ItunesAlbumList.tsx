@@ -31,6 +31,7 @@ const ItunesAlbumList = () => {
 
     return (
       <Album
+        id={album.id}
         saleValue={isOnSale ? saleValue : undefined}
         key={album.number}
         number={album.number}

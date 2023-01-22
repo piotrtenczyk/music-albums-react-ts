@@ -1,7 +1,10 @@
+import { REMOVE_ALBUM_FROM_CART } from "../state/shoppingCart/shoppingCartActions";
 import { AlbumShoppingCartItem } from "../state/shoppingCart/shoppingCartReducer";
+import { useAppDispatch } from "../state/stateHooks";
 import AlbumTitle from "./musicAlbum/AlbumTitle";
 
 interface ShoppingCartItemProps {
+  id: string;
   description: AlbumShoppingCartItem;
 }
 
@@ -25,15 +28,27 @@ const removeButtonStyle = {
   userSelect: "none" as "none",
 };
 
-const ShoppingCartItem: React.FC<ShoppingCartItemProps> = ({ description }) => {
+const ShoppingCartItem: React.FC<ShoppingCartItemProps> = ({
+  id,
+  description,
+}) => {
   const discountMessage = description.salePercentDiscount ? (
     <span style={smallTextStyle}>
       after discount {description.priceAfterDiscount}
     </span>
   ) : null;
 
+  const dispatch = useAppDispatch();
+
   const removeItem: React.MouseEventHandler<HTMLSpanElement> = (e) => {
     console.log(description);
+    // zróbmy dispatch do shoppingCartReducera....
+    //      1) shopping cart reducer musi wiedzieć o który album nam chodzi
+    //            a) mozemy skorelować album do usunięcia poprzez przesłanie i sprawdzenie unikalnego ID
+    dispatch({ type: REMOVE_ALBUM_FROM_CART, id });
+    //      2) reducer musi mieć logikę która usuwa zidentyfikowany album
+    //             a) reducer usuwa album ze stanu
+    //             b) upewniamy się ze cena konćowa jest odzwierciedlona po usnięciu albumu
   };
 
   return (

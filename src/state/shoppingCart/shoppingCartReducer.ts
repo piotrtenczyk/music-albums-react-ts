@@ -2,6 +2,7 @@ import { AlbumDescriptionProps } from "../../common/musicAlbum/AlbumDescription"
 import { ADD_ALBUM_TO_CART, ShoppingCartAction } from "./shoppingCartActions";
 
 export interface AlbumShoppingCartItem {
+  id: string;
   title: string;
   artist: string;
   quantity: number;
@@ -49,6 +50,7 @@ const shoppingCartReducer = (
 
       const newAlbum = {
         ...action.albumDescription,
+        id: action.id,
         quantity: 1,
         salePercentDiscount: action.saleValue,
         priceAfterDiscount: normalizePrice(priceAfterDiscount),

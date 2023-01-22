@@ -7,7 +7,7 @@ const ShoppingCartPage = () => {
   const shoppingCart = useSelector((state: RootState) => state.shoppingCart);
 
   const cartItems = shoppingCart.items.map((item, index) => {
-    return <ShoppingCartItem key={index} description={item} />;
+    return <ShoppingCartItem key={index} id={item.id} description={item} />;
   });
 
   return (
