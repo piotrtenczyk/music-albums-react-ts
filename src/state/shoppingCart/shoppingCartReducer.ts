@@ -1,5 +1,9 @@
 import { AlbumDescriptionProps } from "../../common/musicAlbum/AlbumDescription";
-import { ADD_ALBUM_TO_CART, ShoppingCartAction } from "./shoppingCartActions";
+import {
+  ADD_ALBUM_TO_CART,
+  REMOVE_ALBUM_FROM_CART,
+  ShoppingCartAction,
+} from "./shoppingCartActions";
 
 export interface AlbumShoppingCartItem {
   id: string;
@@ -36,11 +40,54 @@ const normalizePrice = (price: number) => {
   return Number(price.toFixed(2));
 };
 
+interface TotalPrice {
+  beforeDiscounts: number;
+  afterDiscounts: number;
+}
+
+const calculateTotalPrice = (items: AlbumShoppingCartItem[]): TotalPrice => {
+  const totalPrice = items.reduce(
+    (accumulator: number, currentItem) =>
+      accumulator + currentItem.price * currentItem.quantity,
+    0
+  );
+
+  const totalPriceAfterDiscount = items.reduce(
+    (accumulator: number, currentItem) =>
+      accumulator + currentItem.priceAfterDiscount * currentItem.quantity,
+    0
+  );
+
+  return {
+    beforeDiscounts: normalizePrice(totalPrice),
+    afterDiscounts: normalizePrice(totalPriceAfterDiscount),
+  };
+};
+
 const shoppingCartReducer = (
   state: ShoppingCartState = initialState,
   action: ShoppingCartAction
 ) => {
   switch (action.type) {
+    case REMOVE_ALBUM_FROM_CART: {
+      const newItems = [...state.items];
+      const idexOfItemToRemove = newItems.findIndex((item) => {
+        return item.id === action.id;
+      });
+
+      newItems.splice(idexOfItemToRemove, 1);
+
+      const totalPrice = calculateTotalPrice(newItems);
+
+      return {
+        ...state,
+        items: newItems,
+        numberOfItems: newItems.length,
+        totalPrice: totalPrice.beforeDiscounts,
+        totalPriceAfterDiscount: totalPrice.afterDiscounts,
+      };
+    }
+
     case ADD_ALBUM_TO_CART: {
       const discountValue = action.saleValue
         ? (action.saleValue * action.albumDescription.price) / 100
@@ -75,24 +122,14 @@ const shoppingCartReducer = (
         newItems = [...state.items, newAlbum];
       }
 
-      const totalPrice = newItems.reduce(
-        (accumulator: number, currentItem) =>
-          accumulator + currentItem.price * currentItem.quantity,
-        0
-      );
-
-      const totalPriceAfterDiscount = newItems.reduce(
-        (accumulator: number, currentItem) =>
-          accumulator + currentItem.priceAfterDiscount * currentItem.quantity,
-        0
-      );
+      const totalPrice = calculateTotalPrice(newItems);
 
       return {
         ...state,
         items: newItems,
         numberOfItems: state.numberOfItems + 1,
-        totalPrice: normalizePrice(totalPrice),
-        totalPriceAfterDiscount: normalizePrice(totalPriceAfterDiscount),
+        totalPrice: totalPrice.beforeDiscounts,
+        totalPriceAfterDiscount: totalPrice.afterDiscounts,
       };
     }
 

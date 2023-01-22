@@ -41,14 +41,7 @@ const ShoppingCartItem: React.FC<ShoppingCartItemProps> = ({
   const dispatch = useAppDispatch();
 
   const removeItem: React.MouseEventHandler<HTMLSpanElement> = (e) => {
-    console.log(description);
-    // zróbmy dispatch do shoppingCartReducera....
-    //      1) shopping cart reducer musi wiedzieć o który album nam chodzi
-    //            a) mozemy skorelować album do usunięcia poprzez przesłanie i sprawdzenie unikalnego ID
     dispatch({ type: REMOVE_ALBUM_FROM_CART, id });
-    //      2) reducer musi mieć logikę która usuwa zidentyfikowany album
-    //             a) reducer usuwa album ze stanu
-    //             b) upewniamy się ze cena konćowa jest odzwierciedlona po usnięciu albumu
   };
 
   return (
