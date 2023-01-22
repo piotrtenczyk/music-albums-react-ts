@@ -1,9 +1,9 @@
-import { AlbumDescriptionProps } from "../../common/musicAlbum/AlbumDescription";
 import {
   ADD_ALBUM_TO_CART,
   REMOVE_ALBUM_FROM_CART,
   ShoppingCartAction,
 } from "./shoppingCartActions";
+import { applyDiscount, calculateTotalPrice } from "./shoppingUtils";
 
 export interface AlbumShoppingCartItem {
   id: string;
@@ -29,45 +29,10 @@ const initialState: ShoppingCartState = {
   totalPriceAfterDiscount: 0,
 };
 
-const albumsAreEqual = (
-  album1: AlbumDescriptionProps,
-  album2: AlbumDescriptionProps
-) => {
-  return album1.title === album2.title && album1.artist === album2.artist;
-};
-
-const normalizePrice = (price: number) => {
-  return Number(price.toFixed(2));
-};
-
-interface TotalPrice {
-  beforeDiscounts: number;
-  afterDiscounts: number;
-}
-
-const calculateTotalPrice = (items: AlbumShoppingCartItem[]): TotalPrice => {
-  const totalPrice = items.reduce(
-    (accumulator: number, currentItem) =>
-      accumulator + currentItem.price * currentItem.quantity,
-    0
-  );
-
-  const totalPriceAfterDiscount = items.reduce(
-    (accumulator: number, currentItem) =>
-      accumulator + currentItem.priceAfterDiscount * currentItem.quantity,
-    0
-  );
-
-  return {
-    beforeDiscounts: normalizePrice(totalPrice),
-    afterDiscounts: normalizePrice(totalPriceAfterDiscount),
-  };
-};
-
 const shoppingCartReducer = (
   state: ShoppingCartState = initialState,
   action: ShoppingCartAction
-) => {
+): ShoppingCartState => {
   switch (action.type) {
     case REMOVE_ALBUM_FROM_CART: {
       const newItems = [...state.items];
@@ -89,22 +54,19 @@ const shoppingCartReducer = (
     }
 
     case ADD_ALBUM_TO_CART: {
-      const discountValue = action.saleValue
-        ? (action.saleValue * action.albumDescription.price) / 100
-        : 0;
-
-      const priceAfterDiscount = action.albumDescription.price - discountValue;
-
       const newAlbum = {
         ...action.albumDescription,
         id: action.id,
         quantity: 1,
-        salePercentDiscount: action.saleValue,
-        priceAfterDiscount: normalizePrice(priceAfterDiscount),
+        salePercentDiscount: action.discountPercent,
+        priceAfterDiscount: applyDiscount(
+          action.albumDescription.price,
+          action.discountPercent
+        ),
       };
 
-      const albumsMatchinNewAlbumFromAction = state.items.filter((item) =>
-        albumsAreEqual(item, newAlbum)
+      const albumsMatchinNewAlbumFromAction = state.items.filter(
+        (item) => item.id === newAlbum.id
       );
 
       const addedAlbymExistsInCart = albumsMatchinNewAlbumFromAction.length > 0;
@@ -113,7 +75,7 @@ const shoppingCartReducer = (
 
       if (addedAlbymExistsInCart) {
         newItems = state.items.map((item) => {
-          if (albumsAreEqual(item, newAlbum)) {
+          if (item.id === newAlbum.id) {
             return { ...item, quantity: item.quantity + 1 };
           }
           return item;

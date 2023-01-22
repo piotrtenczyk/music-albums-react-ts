@@ -30,7 +30,7 @@ export interface AlbumProps {
   number: number;
   coverImageUrl: string;
   description: AlbumDescriptionProps;
-  saleValue?: number;
+  discountPercent?: number;
 }
 
 const Album = ({
@@ -38,7 +38,7 @@ const Album = ({
   number,
   coverImageUrl,
   description,
-  saleValue,
+  discountPercent,
 }: AlbumProps) => {
   const dispatch = useDispatch();
 
@@ -53,7 +53,7 @@ const Album = ({
       type: ADD_ALBUM_TO_CART,
       id,
       albumDescription: description,
-      saleValue,
+      discountPercent,
     });
   };
 
@@ -70,7 +70,7 @@ const Album = ({
   return (
     <div style={albumStyle}>
       <AlbumNumber value={number} />
-      <AlbumImage imageUrl={coverImageUrl} saleValue={saleValue} />
+      <AlbumImage imageUrl={coverImageUrl} discountPercent={discountPercent} />
       <AlbumDescription
         title={description.title}
         artist={description.artist}

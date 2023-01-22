@@ -27,12 +27,12 @@ const ItunesAlbumList = () => {
     const isOnSale =
       ruleBasedSale?.rule?.type === GREATER_THEN &&
       album.description.price > ruleBasedSale?.rule?.value;
-    const saleValue = ruleBasedSale?.amountInPercent;
+    const discountPercent = ruleBasedSale?.amountInPercent;
 
     return (
       <Album
         id={album.id}
-        saleValue={isOnSale ? saleValue : undefined}
+        discountPercent={isOnSale ? discountPercent : undefined}
         key={album.number}
         number={album.number}
         coverImageUrl={album.coverImageUrl}

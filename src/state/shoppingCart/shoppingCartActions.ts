@@ -8,7 +8,7 @@ export type ShoppingCartAction =
       type: typeof ADD_ALBUM_TO_CART;
       id: string;
       albumDescription: AlbumDescriptionProps;
-      saleValue: number;
+      discountPercent: number;
     }
   | {
       type: typeof REMOVE_ALBUM_FROM_CART;
