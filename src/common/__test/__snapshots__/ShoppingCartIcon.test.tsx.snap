@@ -3,6 +3,7 @@
 exports[`ShoppingCartIcon.tsx matchesSnapshot 1`] = `
 <div>
   <div
+    data-testid="shopping-cart-icon"
     style="position: relative;"
   >
     <a

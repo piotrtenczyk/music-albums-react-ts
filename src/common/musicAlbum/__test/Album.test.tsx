@@ -3,6 +3,7 @@ import Album from "../Album";
 import configureStore from "redux-mock-store";
 import { Provider } from "react-redux";
 import { AlbumShoppingCartItem } from "../../../state/shoppingCart/shoppingCartReducer";
+import { BrowserRouter } from "react-router-dom";
 
 const mockStore = configureStore();
 
@@ -12,12 +13,15 @@ const imageDescription = {
   price: 7,
 };
 
-const renderAlbumWithFakeStore = (
-  items: AlbumShoppingCartItem[]
-): RenderResult => {
+interface RenderOptions {
+  shoppingCartItems: AlbumShoppingCartItem[];
+  renderedAlbumId: string;
+}
+
+const renderAlbumWithFakeStore = (options: RenderOptions): RenderResult => {
   const initialState = {
     shoppingCart: {
-      items,
+      items: options.shoppingCartItems,
     },
   };
 
@@ -25,27 +29,29 @@ const renderAlbumWithFakeStore = (
   return render(
     <Provider store={fakeStore}>
       <Album
-        id="1"
+        id={options.renderedAlbumId}
         number={1}
         coverImageUrl="test-image-url"
         description={imageDescription}
       />
-    </Provider>
+    </Provider>,
+    {
+      wrapper: BrowserRouter,
+    }
   );
 };
 
 describe("Album.tsx", () => {
   it("matches snapshot", () => {
-    const { container } = renderAlbumWithFakeStore([]);
+    const { container } = renderAlbumWithFakeStore({
+      shoppingCartItems: [],
+      renderedAlbumId: "1",
+    });
     expect(container).toMatchSnapshot();
   });
 
   it("shopping cart indicator is rendered when shopping cart contains album with same ID", () => {
-    // PYT 1:  Jak mozemy ustawic sytuacje gdzie jest juz jeden pasujacy album w state?
-    // a) w state mamy obieket z id 444
-    // b) jak mozemy rowniez renderowac album z id 444?
-
-    const objectWithId = {
+    const shoppingCartItem = {
       id: "444",
       title: "This was hard?",
       artist: "Eveyrone together",
@@ -55,7 +61,12 @@ describe("Album.tsx", () => {
       priceAfterDiscount: 50,
     };
 
-    const { container } = renderAlbumWithFakeStore([objectWithId]);
-    expect(true).toEqual(true); // PYT: 2 musimy wykombinowac jakis lepszy matcher :/
+    const { queryByTestId } = renderAlbumWithFakeStore({
+      shoppingCartItems: [shoppingCartItem],
+      renderedAlbumId: "444",
+    });
+
+    const shoppongCartIcon = queryByTestId("shopping-cart-icon");
+    expect(shoppongCartIcon).toBeInTheDocument();
   });
 });

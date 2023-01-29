@@ -41,7 +41,7 @@ const ShoppingCartIcon: React.FC<ShoppingCartIconProps> = ({
     ) : null;
 
   return (
-    <div style={{ position: "relative" }}>
+    <div data-testid="shopping-cart-icon" style={{ position: "relative" }}>
       <Link to="/shopping-cart" style={linkStyle}>
         🛒
         {numberIcon}
