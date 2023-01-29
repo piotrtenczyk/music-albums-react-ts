@@ -1,0 +1,12 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`SaleSticker.tsx matches snapshot when show is true 1`] = `
+<div>
+  <div
+    style="color: black; background: yellow; font-weight: 800; font-family: 'Courier New', monospace; border: 2px solid black; padding: 3px;"
+  >
+    40
+    % Off!
+  </div>
+</div>
+`;
