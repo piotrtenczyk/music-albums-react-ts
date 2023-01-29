@@ -32,7 +32,10 @@ const ShoppingCartIcon: React.FC<ShoppingCartIconProps> = ({
 }) => {
   const numberIcon =
     numberOfItems > 0 ? (
-      <span style={getNumberOfItemsStyle(numberBackgroundColor)}>
+      <span
+        data-testid="number-icon"
+        style={getNumberOfItemsStyle(numberBackgroundColor)}
+      >
         {numberOfItems}
       </span>
     ) : null;
