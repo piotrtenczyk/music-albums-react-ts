@@ -1,0 +1,22 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`ShoppingCartIcon.tsx matchesSnapshot 1`] = `
+<div>
+  <div
+    style="position: relative;"
+  >
+    <a
+      href="/shopping-cart"
+      style="text-decoration: none; color: white;"
+    >
+      🛒
+      <span
+        data-testid="number-icon"
+        style="position: absolute; top: 17px; left: 18px; text-align: center; background: yellow; border-radius: 28%; border: 2px solid grey; height: 28px; padding: 0px 3px; font-size: 25px; color: black;"
+      >
+        99
+      </span>
+    </a>
+  </div>
+</div>
+`;
