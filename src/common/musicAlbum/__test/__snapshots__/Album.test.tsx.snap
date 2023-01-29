@@ -1,0 +1,49 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Album.tsx matches snapshot 1`] = `
+<div>
+  <div
+    style="display: flex; align-items: center; justify-content: space-around; margin: 30px; font-size: 12px; background: rgb(53, 58, 69); padding: 10px 20px 10px 10px;"
+  >
+    <div
+      style="display: flex; align-items: center; padding: 5px; margin: 30px; font-size: 30px; font-family: 'Brush Script MT', cursive; color: rgb(237, 92, 145);"
+    >
+      1
+    </div>
+    <div
+      style="position: relative;"
+    >
+      <div
+        style="width: 100px; min-width: 100px; height: 100px; background: blue; background-image: url(test-image-url); background-size: contain; border-radius: 50%; margin: 10px;"
+      />
+      <div
+        style="position: absolute; top: 0px; left: 0px;"
+      />
+    </div>
+    <div
+      style="margin: 8px;"
+    >
+      <div
+        style="color: rgba(216, 237, 92, 0.612); font-weight: bold; font-size: 18px; font-family: 'Courier New', monospace; width: 330px; text-overflow: ellipsis; overflow: hidden; white-space: nowrap;"
+      >
+        Męka przez testy
+      </div>
+      <div
+        style="margin: 10px; font-weight: 200; font-size: 14px; width: 330px;"
+      >
+        DJ ZDFRONPol11
+      </div>
+      <div
+        style="margin: 10px; font-weight: 200; font-size: 14px; width: 330px;"
+      >
+        7
+      </div>
+    </div>
+    <button
+      style="background: rgb(237, 92, 145); cursor: pointer; border-radius: 4px; padding: 12px;"
+    >
+      Add
+    </button>
+  </div>
+</div>
+`;
