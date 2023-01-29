@@ -1,0 +1,25 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`AlbumTitle.tsx matches snapshot for a complex children elements 1`] = `
+<div>
+  <div
+    style="color: rgba(216, 237, 92, 0.612); font-weight: bold; font-size: 18px; font-family: 'Courier New', monospace; width: 330px; text-overflow: ellipsis; overflow: hidden; white-space: nowrap;"
+  >
+    <div
+      id="additional_div"
+    >
+      text inside another div
+    </div>
+  </div>
+</div>
+`;
+
+exports[`AlbumTitle.tsx matches snapshot for string children 1`] = `
+<div>
+  <div
+    style="color: rgba(216, 237, 92, 0.612); font-weight: bold; font-size: 18px; font-family: 'Courier New', monospace; width: 330px; text-overflow: ellipsis; overflow: hidden; white-space: nowrap;"
+  >
+    My Greatest Hits
+  </div>
+</div>
+`;
