@@ -2,6 +2,7 @@ import { render, RenderResult } from "@testing-library/react";
 import Album from "../Album";
 import configureStore from "redux-mock-store";
 import { Provider } from "react-redux";
+import { AlbumShoppingCartItem } from "../../../state/shoppingCart/shoppingCartReducer";
 
 const mockStore = configureStore();
 
@@ -11,10 +12,12 @@ const imageDescription = {
   price: 7,
 };
 
-const renderAlbumWithFakeStore = (): RenderResult => {
+const renderAlbumWithFakeStore = (
+  items: AlbumShoppingCartItem[]
+): RenderResult => {
   const initialState = {
     shoppingCart: {
-      items: [],
+      items,
     },
   };
 
@@ -33,15 +36,26 @@ const renderAlbumWithFakeStore = (): RenderResult => {
 
 describe("Album.tsx", () => {
   it("matches snapshot", () => {
-    const { container } = renderAlbumWithFakeStore();
-
+    const { container } = renderAlbumWithFakeStore([]);
     expect(container).toMatchSnapshot();
   });
 
   it("shopping cart indicator is rendered when shopping cart contains album with same ID", () => {
     // PYT 1:  Jak mozemy ustawic sytuacje gdzie jest juz jeden pasujacy album w state?
-    const { container } = renderAlbumWithFakeStore();
+    // a) w state mamy obieket z id 444
+    // b) jak mozemy rowniez renderowac album z id 444?
 
+    const objectWithId = {
+      id: "444",
+      title: "This was hard?",
+      artist: "Eveyrone together",
+      quantity: 99,
+      salePercentDiscount: 50,
+      price: 100,
+      priceAfterDiscount: 50,
+    };
+
+    const { container } = renderAlbumWithFakeStore([objectWithId]);
     expect(true).toEqual(true); // PYT: 2 musimy wykombinowac jakis lepszy matcher :/
   });
 });
