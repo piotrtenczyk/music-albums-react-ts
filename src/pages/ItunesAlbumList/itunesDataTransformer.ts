@@ -28,7 +28,7 @@ export interface ItunesAlbumDataEntry {
 export interface AlbumPresentationData {
   id: string;
   number: number;
-  coverImageUrl: string;
+  coverImageUrl: string | undefined;
   description: AlbumDescriptionProps;
 }
 

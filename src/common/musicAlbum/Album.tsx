@@ -28,7 +28,7 @@ const cartIconWrapperStyle = {
 export interface AlbumProps {
   id: string;
   number: number;
-  coverImageUrl: string;
+  coverImageUrl: string | undefined;
   description: AlbumDescriptionProps;
   discountPercent?: number;
 }

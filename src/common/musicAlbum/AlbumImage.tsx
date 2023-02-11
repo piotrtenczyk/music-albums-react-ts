@@ -1,7 +1,7 @@
 import SaleSticker from "../SaleSticker";
 
 interface AlbumImageProps {
-  imageUrl: string;
+  imageUrl: string | undefined;
   discountPercent?: number;
 }
 

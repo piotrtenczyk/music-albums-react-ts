@@ -1,0 +1,16 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`AlbumImage.tsx matches snapshot when imageUrl is undefined 1`] = `
+<div>
+  <div
+    style="position: relative;"
+  >
+    <div
+      style="width: 100px; min-width: 100px; height: 100px; background: blue; background-image: none; background-size: contain; border-radius: 50%; margin: 10px;"
+    />
+    <div
+      style="position: absolute; top: 0px; left: 0px;"
+    />
+  </div>
+</div>
+`;
