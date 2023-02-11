@@ -21,7 +21,7 @@ export interface ItunesAlbumDataEntry {
   id: IdObject;
   "im:name": ObjectWithlabel;
   "im:artist": ObjectWithlabel;
-  "im:price"?: PriceObject;
+  "im:price": PriceObject;
   "im:image"?: ObjectWithlabel[];
 }
 
