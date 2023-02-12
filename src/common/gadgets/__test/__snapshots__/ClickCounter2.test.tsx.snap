@@ -1,0 +1,12 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`ClickCounter.tsx matches snapshot when there were no clicks 1`] = `
+<div>
+  <div
+    data-testid="clickCounter"
+    style="border-radius: 30%; border: 2px solid white; padding: 11px; font-size: 21px; line-height: 8px; height: 30px; cursor: pointer; user-select: none;"
+  >
+    0
+  </div>
+</div>
+`;
