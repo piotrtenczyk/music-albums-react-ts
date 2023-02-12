@@ -12,7 +12,7 @@ interface AddToCartButtonProps {
 
 const AddToCartButton: React.FC<AddToCartButtonProps> = ({ onClick }) => {
   return (
-    <button style={buttonStyle} onClick={onClick}>
+    <button data-testid="addToCartButton" style={buttonStyle} onClick={onClick}>
       Add
     </button>
   );

@@ -40,6 +40,7 @@ exports[`Album.tsx matches snapshot 1`] = `
       </div>
     </div>
     <button
+      data-testid="addToCartButton"
       style="background: rgb(237, 92, 145); cursor: pointer; border-radius: 4px; padding: 12px;"
     >
       Add

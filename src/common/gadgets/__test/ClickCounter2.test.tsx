@@ -1,22 +1,6 @@
-import { fireEvent, render } from "@testing-library/react";
-import exp from "constants";
+import { render } from "@testing-library/react";
+import { click, clickNTimes } from "../../interactions";
 import ClickCounter from "../ClickCounter";
-
-const click = (element: HTMLElement) => {
-  fireEvent(
-    element,
-    new MouseEvent("click", {
-      bubbles: true,
-      cancelable: true,
-    })
-  );
-};
-
-const clickNTimes = (element: HTMLElement, n: number) => {
-  for (var i = 0; i < n; i++) {
-    click(element);
-  }
-};
 
 describe("ClickCounter.tsx", () => {
   it("matches snapshot when there were no clicks", () => {
