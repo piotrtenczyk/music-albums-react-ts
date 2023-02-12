@@ -5,6 +5,7 @@ import ShoppingCartIcon from "../common/ShoppingCartIcon";
 import { useMediaQuery } from "react-responsive";
 import { RootState } from "../state/store";
 import { useAppSelector } from "../state/stateHooks";
+import ClickCounter from "../common/gadgets/ClickCounter";
 
 const getPageStyle = (isBigScreen: boolean) => {
   const bigScreenAreas = `
@@ -56,6 +57,7 @@ const Page = () => {
   return (
     <div style={getPageStyle(isBigScreen)}>
       <header style={headerStyle}>
+        <ClickCounter />
         <Link to="/" style={headerLinkStyle}>
           Music Albums
         </Link>
