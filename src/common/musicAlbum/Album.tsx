@@ -15,16 +15,21 @@ const albumStyle = {
 };
 
 export interface AlbumProps {
+  id: string;
   number: number;
   coverImageUrl: string | undefined;
   description: AlbumDescriptionProps;
 }
 
-const Album = ({ number, coverImageUrl, description }: AlbumProps) => {
+const Album = ({ id, number, coverImageUrl, description }: AlbumProps) => {
   const dispatch = useAppDispatch();
 
   const addAlbumToCart = () => {
-    const cartItem = { name: description.title, price: description.price };
+    const cartItem = {
+      name: description.title,
+      price: description.price,
+      id: id, // mozna by tez zapisac syntaxem id (warto to wiedziec)
+    };
     dispatch({ type: ADD_ITEM_TO_CART, item: cartItem });
   };
 

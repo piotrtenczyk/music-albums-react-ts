@@ -11,7 +11,14 @@ interface PriceObject {
   };
 }
 
+interface ItunesAlbumIdObject {
+  attributes: {
+    "im:id": string;
+  };
+}
+
 export interface ItunesAlbumDataEntry {
+  id: ItunesAlbumIdObject;
   "im:name": ObjectWithlabel;
   "im:artist": ObjectWithlabel;
   "im:price"?: PriceObject;
@@ -25,6 +32,7 @@ export const getAlbumsFromItunesAlbumData = (
     const priceValueFromItunes = itunesAlbum?.["im:price"]?.attributes.amount;
 
     return {
+      id: itunesAlbum.id.attributes["im:id"],
       number: index + 1,
       coverImageUrl: itunesAlbum?.["im:image"]?.[2]?.label || "",
       description: {

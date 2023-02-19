@@ -29,6 +29,7 @@ const OurAlbums = () => {
 
     return (
       <Album
+        id={album.id}
         key={index}
         number={index + 1}
         coverImageUrl={album.imageUrl}

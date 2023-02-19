@@ -27,6 +27,7 @@ function HomePage() {
       </HPP>
       <HPP>Michał P. podał nam taki ciekawy album:</HPP>
       <Album
+        id="-1"
         number={1}
         coverImageUrl={coverImageFromMichal}
         description={description}
@@ -34,6 +35,7 @@ function HomePage() {
       <HPP>Druga wersja:</HPP>
 
       <Album
+        id="-2"
         number={2}
         coverImageUrl={coverImageFromGrzegorz}
         description={description}

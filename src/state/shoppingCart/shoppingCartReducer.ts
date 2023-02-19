@@ -1,6 +1,7 @@
 import { ADD_ITEM_TO_CART, ShoppingCartAction } from "./shoppingCartActions";
 
 export interface ShoppingCartItem {
+  id: string;
   name: string;
   price: number;
 }
