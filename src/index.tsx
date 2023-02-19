@@ -7,6 +7,9 @@ import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import Page from "./pageStructure/Page";
 import ItunesAlbumList from "./pages/ItunesAlbumList/ItunesAlbumList";
 import OurAlbums from "./pages/OurAlbums";
+import { Provider } from "react-redux";
+import store from "./state/store";
+import ShoppingCart from "./pages/ShoppingCart";
 
 const router = createBrowserRouter([
   {
@@ -29,10 +32,16 @@ const router = createBrowserRouter([
         path: "/our-albums",
         element: <OurAlbums />,
       },
+      {
+        path: "/shopping-cart",
+        element: <ShoppingCart />,
+      },
     ],
   },
 ]);
 
 ReactDOM.createRoot(document.getElementById("root") as HTMLElement).render(
-  <RouterProvider router={router} />
+  <Provider store={store}>
+    <RouterProvider router={router} />
+  </Provider>
 );

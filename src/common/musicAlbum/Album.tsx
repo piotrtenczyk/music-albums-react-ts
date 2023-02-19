@@ -1,3 +1,5 @@
+import { ADD_ITEM_TO_CART } from "../../state/shoppingCart/shoppingCartActions";
+import { useAppDispatch } from "../../state/stateHooks";
 import AddToCartButton from "../AddToCartButton";
 import AlbumDescription, { AlbumDescriptionProps } from "./AlbumDescription";
 import AlbumImage from "./AlbumImage";
@@ -18,11 +20,14 @@ export interface AlbumProps {
   description: AlbumDescriptionProps;
 }
 
-const doNothingForNow = () => {
-  console.log("nothing yet");
-};
-
 const Album = ({ number, coverImageUrl, description }: AlbumProps) => {
+  const dispatch = useAppDispatch();
+
+  const addAlbumToCart = () => {
+    const cartItem = { name: description.title, price: description.price };
+    dispatch({ type: ADD_ITEM_TO_CART, item: cartItem });
+  };
+
   return (
     <div style={albumStyle}>
       <AlbumNumber value={number} />
@@ -32,7 +37,7 @@ const Album = ({ number, coverImageUrl, description }: AlbumProps) => {
         artist={description.artist}
         price={description.price}
       />
-      <AddToCartButton onClick={doNothingForNow} />
+      <AddToCartButton onClick={addAlbumToCart} />
     </div>
   );
 };

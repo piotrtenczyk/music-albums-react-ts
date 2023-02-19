@@ -3,6 +3,7 @@ import NavBar from "./NavBar";
 import { Link, Outlet } from "react-router-dom";
 import { useMediaQuery } from "react-responsive";
 import ShoppingCartIcon from "../common/ShoppingCartIcon";
+import { useAppSelector } from "../state/stateHooks";
 
 const getPageStyle = (isBigScreen: boolean) => {
   const bigScreenAreas = `
@@ -47,13 +48,17 @@ const headerLinkStyle = {
 const Page = () => {
   const isBigScreen = useMediaQuery({ query: "(min-width: 800px)" });
 
+  const numberOfItems = useAppSelector(
+    (state) => state.shoppingCart.numberOfItems
+  );
+
   return (
     <div style={getPageStyle(isBigScreen)}>
       <header style={headerStyle}>
         <Link to="/" style={headerLinkStyle}>
           Music Albums
         </Link>
-        <ShoppingCartIcon numberOfItems={0} />
+        <ShoppingCartIcon numberOfItems={numberOfItems} />
       </header>
       <NavBar />
       <section style={sectionStyle}>
