@@ -13,7 +13,7 @@ const albumStyle = {
 
 export interface AlbumProps {
   number: number;
-  coverImageUrl: string;
+  coverImageUrl: string | undefined;
   description: AlbumDescriptionProps;
 }
 
