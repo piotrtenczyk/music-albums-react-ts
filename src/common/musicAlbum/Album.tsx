@@ -1,3 +1,4 @@
+import AddToCartButton from "../AddToCartButton";
 import AlbumDescription, { AlbumDescriptionProps } from "./AlbumDescription";
 import AlbumImage from "./AlbumImage";
 import AlbumNumber from "./AlbumNumber";
@@ -17,6 +18,10 @@ export interface AlbumProps {
   description: AlbumDescriptionProps;
 }
 
+const doNothingForNow = () => {
+  console.log("nothing yet");
+};
+
 const Album = ({ number, coverImageUrl, description }: AlbumProps) => {
   return (
     <div style={albumStyle}>
@@ -27,6 +32,7 @@ const Album = ({ number, coverImageUrl, description }: AlbumProps) => {
         artist={description.artist}
         price={description.price}
       />
+      <AddToCartButton onClick={doNothingForNow} />
     </div>
   );
 };

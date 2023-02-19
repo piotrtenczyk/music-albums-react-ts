@@ -1,12 +1,6 @@
 import React from "react";
+import { HPP } from "../common/HomePageParagraph";
 import Album from "../common/musicAlbum/Album";
-
-const homePageParagraphStyle = {
-  fontSize: "18px",
-  fontFamily: "'Courier New', monospace",
-  margin: "30px",
-  display: "inline-block",
-};
 
 function HomePage() {
   const description = {
@@ -22,29 +16,28 @@ function HomePage() {
     "https://s3.viva.pl/newsy/zenek-martyniuk-jamnik-484850-GALLERY_BIG.jpg";
   return (
     <div className="App">
-      <p style={homePageParagraphStyle}>
+      <HPP>
         Checkout out our music albums. These are the top albums on iTunes at the
         moment. If you like any of them, feel free to add them to a shopping
         cart.
-      </p>
-      <p style={homePageParagraphStyle}>
+      </HPP>
+      <HPP>
         Also have a look at our hand picked favourites (we often run some good
         discounts on those).
-      </p>
-      <p style={homePageParagraphStyle}>
-        Michał P. podał nam taki ciekawy album:
-        <Album
-          number={1}
-          coverImageUrl={coverImageFromMichal}
-          description={description}
-        />
-        Druga wersja:
-        <Album
-          number={2}
-          coverImageUrl={coverImageFromGrzegorz}
-          description={description}
-        />
-      </p>
+      </HPP>
+      <HPP>Michał P. podał nam taki ciekawy album:</HPP>
+      <Album
+        number={1}
+        coverImageUrl={coverImageFromMichal}
+        description={description}
+      />
+      <HPP>Druga wersja:</HPP>
+
+      <Album
+        number={2}
+        coverImageUrl={coverImageFromGrzegorz}
+        description={description}
+      />
     </div>
   );
 }
