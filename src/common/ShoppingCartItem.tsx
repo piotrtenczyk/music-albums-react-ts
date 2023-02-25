@@ -4,6 +4,7 @@ import { ShoppingCartItem as ShoppingItem } from "../state/shoppingCart/shopping
 
 interface ShoppingCartItemProps {
   id: string;
+  quantity: number;
   description: ShoppingItem;
 }
 
@@ -30,6 +31,7 @@ const removeButtonStyle = {
 const ShoppingCartItem: React.FC<ShoppingCartItemProps> = ({
   id,
   description,
+  quantity,
 }) => {
   //   const discountMessage = description.salePercentDiscount ? (
   //     <span style={smallTextStyle}>
@@ -48,7 +50,7 @@ const ShoppingCartItem: React.FC<ShoppingCartItemProps> = ({
       <AlbumTitle>{description.name}</AlbumTitle>
       <span style={smallTextStyle}>{description.price}</span>
       {/* <span style={smallTextStyle}> (x{description.quantity})</span> */}
-      <span style={smallTextStyle}> (x ? )</span>
+      <span style={smallTextStyle}> (x {quantity} )</span>
       {/* {discountMessage} */}
       <span onClick={() => null} style={removeButtonStyle}>
         🗑
