@@ -1,4 +1,5 @@
 import { act } from "react-dom/test-utils";
+import ShoppingCartItem from "../../common/ShoppingCartItem";
 import { ADD_ITEM_TO_CART, ShoppingCartAction } from "./shoppingCartActions";
 
 export interface ShoppingCartItem {
@@ -18,23 +19,30 @@ const defaultState: ShoppingCartState = {
   items: [],
 };
 
+const getQuantityForItem = (
+  items: ShoppingCartItem[],
+  newItemId: string
+): number => {
+  const itemMatchingIdFromAction = items.find((item) => item.id === newItemId);
+  const quantityForNewItem = itemMatchingIdFromAction
+    ? itemMatchingIdFromAction.quantity + 1
+    : 1;
+
+  return quantityForNewItem;
+};
+
 const shoppingCartReducer = (
   state: ShoppingCartState = defaultState,
   action: ShoppingCartAction
 ): ShoppingCartState => {
   switch (action.type) {
     case ADD_ITEM_TO_CART:
-      const itemMatchingIdFromAction = state.items.find(
-        (item) => item.id === action.item.id
+      const quantityForNewItem = getQuantityForItem(
+        state.items,
+        action.item.id
       );
-      const quantityForNewItem = itemMatchingIdFromAction
-        ? itemMatchingIdFromAction.quantity + 1
-        : 1;
 
-      // wyodrebnij funkcje getQuantityForItem(state.items: ShoppingCartItem[], newItemId: string)
-      // podpowiedz na slacku (jezeli ktos potrzebuje)
-
-      let newItems: ShoppingCartItem[] = [];
+      let newItems: ShoppingCartItem[];
       if (quantityForNewItem > 1) {
         newItems = state.items.map((oldItem) => {
           return oldItem.id === action.item.id
