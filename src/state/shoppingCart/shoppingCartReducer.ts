@@ -31,6 +31,9 @@ const shoppingCartReducer = (
         ? itemMatchingIdFromAction.quantity + 1
         : 1;
 
+      // wyodrebnij funkcje getQuantityForItem(state.items: ShoppingCartItem[], newItemId: string)
+      // podpowiedz na slacku (jezeli ktos potrzebuje)
+
       let newItems: ShoppingCartItem[] = [];
       if (quantityForNewItem > 1) {
         newItems = state.items.map((oldItem) => {
