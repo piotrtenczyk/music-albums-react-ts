@@ -1,6 +1,7 @@
 import { useAppDispatch } from "../state/stateHooks";
 import AlbumTitle from "./musicAlbum/AlbumTitle";
 import { ShoppingCartItem as ShoppingItem } from "../state/shoppingCart/shoppingCartReducer";
+import { REMOVE_ALBUM_FROM_CART } from "../state/shoppingCart/shoppingCartActions";
 
 interface ShoppingCartItemProps {
   id: string;
@@ -39,11 +40,11 @@ const ShoppingCartItem: React.FC<ShoppingCartItemProps> = ({
   //     </span>
   //   ) : null;
 
-  //   const dispatch = useAppDispatch();
+  const dispatch = useAppDispatch();
 
-  //   const removeItem: React.MouseEventHandler<HTMLSpanElement> = (e) => {
-  //     dispatch({ type: REMOVE_ALBUM_FROM_CART, id });
-  //   };
+  const removeItem: React.MouseEventHandler<HTMLSpanElement> = (e) => {
+    dispatch({ type: REMOVE_ALBUM_FROM_CART, id });
+  };
 
   return (
     <div style={cartItemStyle}>
@@ -52,7 +53,7 @@ const ShoppingCartItem: React.FC<ShoppingCartItemProps> = ({
       {/* <span style={smallTextStyle}> (x{description.quantity})</span> */}
       <span style={smallTextStyle}> (x {quantity} )</span>
       {/* {discountMessage} */}
-      <span onClick={() => null} style={removeButtonStyle}>
+      <span onClick={removeItem} style={removeButtonStyle}>
         🗑
       </span>
     </div>

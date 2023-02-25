@@ -1,6 +1,8 @@
-import { act } from "react-dom/test-utils";
-import ShoppingCartItem from "../../common/ShoppingCartItem";
-import { ADD_ITEM_TO_CART, ShoppingCartAction } from "./shoppingCartActions";
+import {
+  ADD_ITEM_TO_CART,
+  REMOVE_ALBUM_FROM_CART,
+  ShoppingCartAction,
+} from "./shoppingCartActions";
 
 export interface ShoppingCartItem {
   id: string;
@@ -36,6 +38,19 @@ const shoppingCartReducer = (
   action: ShoppingCartAction
 ): ShoppingCartState => {
   switch (action.type) {
+    case REMOVE_ALBUM_FROM_CART:
+      const itemsToLeave = state.items.filter((item) => item.id !== action.id);
+      const sumOfQuantitiesToLeave = itemsToLeave.reduce(
+        (accumulator, item) => accumulator + item.quantity,
+        0
+      );
+
+      return {
+        ...state,
+        items: itemsToLeave,
+        numberOfItems: sumOfQuantitiesToLeave,
+      };
+
     case ADD_ITEM_TO_CART:
       const quantityForNewItem = getQuantityForItem(
         state.items,
