@@ -1,3 +1,4 @@
+import { act } from "react-dom/test-utils";
 import { ADD_ITEM_TO_CART, ShoppingCartAction } from "./shoppingCartActions";
 
 export interface ShoppingCartItem {
@@ -23,41 +24,34 @@ const shoppingCartReducer = (
 ): ShoppingCartState => {
   switch (action.type) {
     case ADD_ITEM_TO_CART:
-      const newNumberOfItems = state.numberOfItems + 1;
-
-      const newItems = [...state.items]; // na razie jest to nowa tablica na starych itemach
-
-      const indexOfAlbumWithIdFromActionInState = state.items.findIndex(
-        (itemInOldState) => itemInOldState.id === action.item.id
+      const itemMatchingIdFromAction = state.items.find(
+        (item) => item.id === action.item.id
       );
+      const quantityForNewItem = itemMatchingIdFromAction
+        ? itemMatchingIdFromAction.quantity + 1
+        : 1;
 
-      const albumWithIdFromActionExistsInState =
-        indexOfAlbumWithIdFromActionInState !== -1;
-
-      if (albumWithIdFromActionExistsInState) {
-        const existingItem = state.items[indexOfAlbumWithIdFromActionInState];
-        const nowyQuantity = existingItem.quantity + 1;
-
-        newItems.splice(indexOfAlbumWithIdFromActionInState, 1); // usuwamy stary item
-        const newItemWithQuantity = {
-          ...action.item,
-          quantity: nowyQuantity,
-        };
-        newItems.push(newItemWithQuantity); // dodajemy nowy item
+      let newItems: ShoppingCartItem[] = [];
+      if (quantityForNewItem > 1) {
+        newItems = state.items.map((oldItem) => {
+          return oldItem.id === action.item.id
+            ? { ...oldItem, quantity: quantityForNewItem }
+            : oldItem;
+        });
       } else {
-        const newItemWithQuantity = {
+        const newItem = {
           ...action.item,
           quantity: 1,
         };
-        newItems.push(newItemWithQuantity);
+        newItems = [...state.items, newItem];
       }
 
-      const newState = {
+      return {
         ...state,
-        numberOfItems: newNumberOfItems,
         items: newItems,
+        numberOfItems: state.numberOfItems + 1,
       };
-      return newState;
+
     default:
       return state;
   }
