@@ -23,6 +23,27 @@ export const salesInformation: SalesRawData[] = [
   },
 ];
 
+const findItemValueRangeBasedRule = (salesInformation: SalesRawData[]) => {
+  return salesInformation.find(
+    (salesRule) => salesRule.rule && salesRule.rule.value
+  );
+};
+
+interface SalesItem {
+  id: string;
+  value: number;
+}
+
+const getDiscountForItem = (
+  salesItem: SalesItem,
+  salesInformation: SalesRawData[]
+): number | undefined => {
+  // Funkcja musi sama wybrac, ktora zasade wyprzedazową uwzgledic
+  // Pierwszenstwo powinna miec zasada oparta na ID
+  // Jak to zrobic?
+  return undefined;
+};
+
 const findItemIdBasedRule = (salesInformation: SalesRawData[]) => {
   return salesInformation.find((salesRule) => salesRule.itemsUnderSale);
 };
