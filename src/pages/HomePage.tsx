@@ -30,7 +30,7 @@ function HomePage() {
         id="-1"
         number={1}
         coverImageUrl={coverImageFromMichal}
-        description={description}
+        description={{ ...description, price: 0.01 }}
       />
       <HPP>Druga wersja:</HPP>
 
@@ -39,6 +39,7 @@ function HomePage() {
         number={2}
         coverImageUrl={coverImageFromGrzegorz}
         description={description}
+        discountValue={100}
       />
     </div>
   );
