@@ -6,6 +6,8 @@ import {
   getAlbumsFromItunesAlbumData,
   ItunesAlbumDataEntry,
 } from "./itunesDataTransformer";
+import { fetchSalesIfNotPresent } from "../../state/sales/salesActions";
+import { useAppDispatch } from "../../state/stateHooks";
 
 const addDelay = () => {
   return new Promise((resolve) =>
@@ -26,6 +28,8 @@ const ItunesAlbumList = () => {
     ItunesAlbumDataEntry[] | null
   >(null);
 
+  const dispatch = useAppDispatch();
+
   useEffect(() => {
     const fetchAndSetAlbums = async () => {
       const fetchResponse = await fetch(
@@ -42,6 +46,7 @@ const ItunesAlbumList = () => {
     };
 
     fetchAndSetAlbums();
+    dispatch(fetchSalesIfNotPresent);
   }, []);
 
   const albumData = albumDataEntries
