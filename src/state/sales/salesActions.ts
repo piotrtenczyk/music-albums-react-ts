@@ -23,7 +23,7 @@ export const fetchSalesIfNotPresent = async (
 ) => {
   if (getState().sales.data === null) {
     dispach({ type: SET_SALES_DATA_REQUESTED });
-    const fetchResult = await fakeFetch(salesInformation);
+    const fetchResult = await fakeFetch(salesInformation, "salesInformation");
     dispach({ type: SET_SALES_DATA, data: fetchResult });
   }
 };

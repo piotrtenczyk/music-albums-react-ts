@@ -7,18 +7,26 @@ import {
   AlbumRawData,
   default as albumsMockedData,
 } from "../dataMocking/ourMusicalAlbumsDataMock";
+import { fetchSalesIfNotPresent } from "../state/sales/salesActions";
+import { useAppDispatch } from "../state/stateHooks";
 
 const OurAlbums = () => {
   const [albumsData, setAlbumsData] = useState<null | AlbumRawData[]>(null);
 
+  const dispatch = useAppDispatch();
+
   useEffect(() => {
     const fetchOurAlbums = async () => {
-      const fetchedAlbumData = await fakeFetch(albumsMockedData);
+      const fetchedAlbumData = await fakeFetch(
+        albumsMockedData,
+        "albumsMockedData"
+      );
       setAlbumsData(fetchedAlbumData);
     };
 
     fetchOurAlbums();
-  }, []);
+    dispatch(fetchSalesIfNotPresent);
+  }, [dispatch]);
 
   const albumsComponents = albumsData?.map((album, index) => {
     const albumDescription = {

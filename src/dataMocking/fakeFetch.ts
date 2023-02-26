@@ -1,5 +1,5 @@
-const fakeFetch = (rawData: any) => {
-  console.log("---- executing fake fetch -----");
+const fakeFetch = (rawData: any, resourceName: string) => {
+  console.log("---- executing fake fetch ----- for " + resourceName);
   return new Promise<any[]>((resolve) => {
     setTimeout(() => {
       resolve(rawData);
