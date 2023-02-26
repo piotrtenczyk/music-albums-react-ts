@@ -29,19 +29,43 @@ const findItemValueRangeBasedRule = (salesInformation: SalesRawData[]) => {
   );
 };
 
+const getDiscountPercentForRangeRule = (
+  salesInformation: SalesRawData[],
+  itemValue: number
+): number | undefined => {
+  const itemValueRangeBasedRule = findItemValueRangeBasedRule(salesInformation);
+
+  const itemValueIsFulfilingRule =
+    itemValueRangeBasedRule?.rule?.type === GREATER_THEN &&
+    itemValue > itemValueRangeBasedRule?.rule?.value;
+
+  return itemValueIsFulfilingRule
+    ? itemValueRangeBasedRule.amountInPercent
+    : undefined;
+};
+
 interface SalesItem {
   id: string;
   value: number;
 }
 
-const getDiscountForItem = (
+export const getDiscountForItem = (
   salesItem: SalesItem,
-  salesInformation: SalesRawData[]
+  salesInformation: SalesRawData[] | null
 ): number | undefined => {
-  // Funkcja musi sama wybrac, ktora zasade wyprzedazową uwzgledic
-  // Pierwszenstwo powinna miec zasada oparta na ID
-  // Jak to zrobic?
-  return undefined;
+  if (salesInformation === null) return undefined;
+  const itemIdBasedDiscount = getDiscountPercentForItemId(
+    salesInformation,
+    salesItem.id
+  );
+  if (itemIdBasedDiscount) return itemIdBasedDiscount; // id based discounts should take priority over other types of discounts
+
+  const itemValueRangeBasedDiscount = getDiscountPercentForRangeRule(
+    salesInformation,
+    salesItem.value
+  );
+
+  return itemValueRangeBasedDiscount;
 };
 
 const findItemIdBasedRule = (salesInformation: SalesRawData[]) => {

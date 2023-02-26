@@ -8,7 +8,7 @@ import {
 } from "./itunesDataTransformer";
 import { fetchSalesIfNotPresent } from "../../state/sales/salesActions";
 import { useAppDispatch, useAppSelector } from "../../state/stateHooks";
-import { getDiscountPercentForItemId } from "../../dataMocking/salesDataMock";
+import { getDiscountForItem } from "../../dataMocking/salesDataMock";
 
 const addDelay = () => {
   return new Promise((resolve) =>
@@ -56,10 +56,11 @@ const ItunesAlbumList = () => {
     : [];
 
   const albumComponents = albumData?.map((album) => {
-    const discountForAlbum = getDiscountPercentForItemId(
-      salesInformation,
-      album.id
-    );
+    const salesItem = {
+      id: album.id,
+      value: album.description.price,
+    };
+    const discountForAlbum = getDiscountForItem(salesItem, salesInformation);
 
     return (
       <Album

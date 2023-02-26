@@ -7,7 +7,10 @@ import {
   AlbumRawData,
   default as albumsMockedData,
 } from "../dataMocking/ourMusicalAlbumsDataMock";
-import { getDiscountPercentForItemId } from "../dataMocking/salesDataMock";
+import {
+  getDiscountForItem,
+  getDiscountPercentForItemId,
+} from "../dataMocking/salesDataMock";
 import { fetchSalesIfNotPresent } from "../state/sales/salesActions";
 import { useAppDispatch, useAppSelector } from "../state/stateHooks";
 
@@ -36,11 +39,12 @@ const OurAlbums = () => {
       artist: album.author,
       price: 9.99,
     };
+    const salesItem = {
+      id: album.id,
+      value: albumDescription.price,
+    };
 
-    const discountForAlbum = getDiscountPercentForItemId(
-      salesInformation,
-      album.id
-    );
+    const discountForAlbum = getDiscountForItem(salesItem, salesInformation);
 
     return (
       <Album
