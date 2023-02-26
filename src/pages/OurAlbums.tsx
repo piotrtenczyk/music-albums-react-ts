@@ -7,13 +7,15 @@ import {
   AlbumRawData,
   default as albumsMockedData,
 } from "../dataMocking/ourMusicalAlbumsDataMock";
+import { getDiscountPercentForItemId } from "../dataMocking/salesDataMock";
 import { fetchSalesIfNotPresent } from "../state/sales/salesActions";
-import { useAppDispatch } from "../state/stateHooks";
+import { useAppDispatch, useAppSelector } from "../state/stateHooks";
 
 const OurAlbums = () => {
   const [albumsData, setAlbumsData] = useState<null | AlbumRawData[]>(null);
 
   const dispatch = useAppDispatch();
+  const salesInformation = useAppSelector((state) => state.sales.data);
 
   useEffect(() => {
     const fetchOurAlbums = async () => {
@@ -35,6 +37,11 @@ const OurAlbums = () => {
       price: 9.99,
     };
 
+    const discountForAlbum = getDiscountPercentForItemId(
+      salesInformation,
+      album.id
+    );
+
     return (
       <Album
         id={album.id}
@@ -42,6 +49,7 @@ const OurAlbums = () => {
         number={index + 1}
         coverImageUrl={album.imageUrl}
         description={albumDescription}
+        discountValue={discountForAlbum}
       />
     );
   });

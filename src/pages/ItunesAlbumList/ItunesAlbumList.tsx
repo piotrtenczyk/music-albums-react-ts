@@ -7,7 +7,8 @@ import {
   ItunesAlbumDataEntry,
 } from "./itunesDataTransformer";
 import { fetchSalesIfNotPresent } from "../../state/sales/salesActions";
-import { useAppDispatch } from "../../state/stateHooks";
+import { useAppDispatch, useAppSelector } from "../../state/stateHooks";
+import { getDiscountPercentForItemId } from "../../dataMocking/salesDataMock";
 
 const addDelay = () => {
   return new Promise((resolve) =>
@@ -29,6 +30,7 @@ const ItunesAlbumList = () => {
   >(null);
 
   const dispatch = useAppDispatch();
+  const salesInformation = useAppSelector((state) => state.sales.data);
 
   useEffect(() => {
     const fetchAndSetAlbums = async () => {
@@ -47,13 +49,18 @@ const ItunesAlbumList = () => {
 
     fetchAndSetAlbums();
     dispatch(fetchSalesIfNotPresent);
-  }, []);
+  }, [dispatch]);
 
   const albumData = albumDataEntries
     ? getAlbumsFromItunesAlbumData(albumDataEntries)
     : [];
 
   const albumComponents = albumData?.map((album) => {
+    const discountForAlbum = getDiscountPercentForItemId(
+      salesInformation,
+      album.id
+    );
+
     return (
       <Album
         id={album.id}
@@ -61,6 +68,7 @@ const ItunesAlbumList = () => {
         number={album.number}
         coverImageUrl={album.coverImageUrl}
         description={album.description}
+        discountValue={discountForAlbum}
       />
     );
   });

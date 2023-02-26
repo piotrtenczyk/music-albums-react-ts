@@ -22,3 +22,21 @@ export const salesInformation: SalesRawData[] = [
     },
   },
 ];
+
+const findItemIdBasedRule = (salesInformation: SalesRawData[]) => {
+  return salesInformation.find((salesRule) => salesRule.itemsUnderSale);
+};
+
+export const getDiscountPercentForItemId = (
+  salesInformation: SalesRawData[] | null,
+  itemId: string
+): number | undefined => {
+  if (salesInformation === null) return undefined;
+
+  const salesRule = findItemIdBasedRule(salesInformation);
+  const ruleMatchesItemId: boolean = !!salesRule?.itemsUnderSale?.find(
+    (item) => item === itemId
+  );
+
+  return salesRule && ruleMatchesItemId ? salesRule.amountInPercent : undefined;
+};
