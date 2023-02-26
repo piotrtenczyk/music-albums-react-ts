@@ -1,3 +1,5 @@
+import SaleSticker from "../SaleSticker";
+
 interface AlbumImageProps {
   imageUrl: string | undefined;
 }
@@ -15,10 +17,19 @@ const getCoverImageStyle = (imageUrl: string | undefined) => {
   };
 };
 
+const salesStickerWrapperStyle = {
+  position: "absolute" as "absolute",
+  left: "0px",
+  top: "0px",
+};
+
 const AlbumImage = ({ imageUrl }: AlbumImageProps) => {
   return (
     <div style={{ position: "relative" }}>
       <div style={getCoverImageStyle(imageUrl)}></div>
+      <div style={salesStickerWrapperStyle}>
+        <SaleSticker value={10} show={true} />
+      </div>
     </div>
   );
 };
