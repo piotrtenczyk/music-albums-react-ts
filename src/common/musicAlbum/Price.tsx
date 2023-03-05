@@ -1,8 +1,3 @@
-interface PriceProps {
-  value: number;
-  percentDiscount?: number;
-}
-
 const priceWrapperStyle = {
   margin: "8px",
 };
@@ -32,6 +27,11 @@ const getPriceAfterDiscount = (
   return priceAfterDiscount?.toFixed(2);
 };
 
+interface PriceProps {
+  value: number;
+  percentDiscount?: number;
+}
+
 const Price: React.FC<PriceProps> = ({ value, percentDiscount }) => {
   const valueAfterDiscount = getPriceAfterDiscount(value, percentDiscount);
 
@@ -43,7 +43,9 @@ const Price: React.FC<PriceProps> = ({ value, percentDiscount }) => {
   return (
     <span style={priceWrapperStyle}>
       <span style={basePriceStyle}>{value}</span>
-      <span style={discountedPriceStyle}>{valueAfterDiscount}</span>
+      <span data-testid="discounted-price" style={discountedPriceStyle}>
+        {valueAfterDiscount}
+      </span>
     </span>
   );
 };

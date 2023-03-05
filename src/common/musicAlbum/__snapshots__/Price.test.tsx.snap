@@ -1,0 +1,39 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Price.tsx with discount 1`] = `
+<div>
+  <span
+    style="margin: 8px;"
+  >
+    <span
+      style="padding: 0px 5px; text-decoration: line-through; background-color: inherit;"
+    >
+      200
+    </span>
+    <span
+      data-testid="discounted-price"
+      style="padding: 0px 5px; background-color: yellow; color: black;"
+    >
+      160.00
+    </span>
+  </span>
+</div>
+`;
+
+exports[`Price.tsx without discount 1`] = `
+<div>
+  <span
+    style="margin: 8px;"
+  >
+    <span
+      style="padding: 0px 5px; background-color: inherit;"
+    >
+      200
+    </span>
+    <span
+      data-testid="discounted-price"
+      style="padding: 0px 5px; background-color: inherit;"
+    />
+  </span>
+</div>
+`;
