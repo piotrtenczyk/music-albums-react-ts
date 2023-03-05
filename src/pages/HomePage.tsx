@@ -14,6 +14,8 @@ function HomePage() {
 
   const coverImageFromGrzegorz =
     "https://s3.viva.pl/newsy/zenek-martyniuk-jamnik-484850-GALLERY_BIG.jpg";
+
+  const emptyDescription = { artist: "", title: "", price: 0 };
   return (
     <div className="App">
       <HPP>
@@ -40,6 +42,61 @@ function HomePage() {
         coverImageUrl={coverImageFromGrzegorz}
         description={description}
         discountValue={100}
+      />
+
+      <HPP>Konkurs Albumow do testu:</HPP>
+      <Album
+        id={"konkursowe123"}
+        number={666}
+        coverImageUrl={
+          "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTQzSYue0zcxM7U9CuARMA-hFEcxkL9F_Gldg&usqp=CAU"
+        }
+        description={{ title: "Placz Kotku", artist: "Behemot", price: 666 }}
+      />
+
+      <Album
+        id={"konkursowe123"}
+        number={666}
+        coverImageUrl={"https://m.media-amazon.com/images/I/614ub5HQC2L.jpg"}
+        description={{ title: "Placz Kotku", artist: "Behemot", price: 666 }}
+      />
+
+      <Album
+        id="MojKochanyZenus <3"
+        number={1}
+        coverImageUrl={
+          "https://radekpusko.pl/wp-content/uploads/2017/03/Zenek-Martyniuk.jpg"
+        }
+        description={{
+          title: "Ach jak tesknie",
+          artist: "Zenon Martyniuk",
+          price: 0,
+        }}
+      />
+
+      <Album
+        id={"12223"}
+        number={1}
+        coverImageUrl={
+          "https://rd.com/wp-content/uploads/2020/12/GettyImages-78777891-scaled.jpg"
+        }
+        description={{
+          title: "Open for new knowledge",
+          artist: "Developer ",
+          price: 9.99,
+        }}
+      />
+      <Album
+        id={"Phoebe"}
+        number={1}
+        coverImageUrl={
+          "https://www.nicepng.com/png/detail/397-3972078_poster-smelly-cat-smelly-cat-friends.png"
+        }
+        description={{
+          title: "Smelly cat",
+          artist: "Phoebe Buffay",
+          price: 10,
+        }}
       />
     </div>
   );
