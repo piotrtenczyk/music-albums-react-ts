@@ -1,0 +1,11 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`AlbumTitle.tsx render result maches snapshot 1`] = `
+<div>
+  <div
+    style="color: rgba(216, 237, 92, 0.612); font-weight: bold; font-size: 18px; font-family: 'Courier New', monospace; width: 330px; text-overflow: ellipsis; overflow: hidden; white-space: nowrap;"
+  >
+    xxx
+  </div>
+</div>
+`;
