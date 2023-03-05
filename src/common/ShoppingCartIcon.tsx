@@ -1,8 +1,11 @@
 import { Link } from "react-router-dom";
 
-const linkStyle = {
-  textDecoration: "none",
-  color: "white",
+const getlinkStyle = (isTransparent: boolean | undefined) => {
+  return {
+    textDecoration: "none",
+    color: "white",
+    opacity: isTransparent ? "0.5" : "1",
+  };
 };
 
 const getNumberOfItemsStyle = (backgroundColor: string | undefined) => {
@@ -24,11 +27,13 @@ const getNumberOfItemsStyle = (backgroundColor: string | undefined) => {
 interface ShoppingCartIconProps {
   numberOfItems: number;
   numberBackgroundColor?: string;
+  transparent?: boolean;
 }
 
 const ShoppingCartIcon: React.FC<ShoppingCartIconProps> = ({
   numberOfItems,
   numberBackgroundColor,
+  transparent,
 }) => {
   const numberIcon =
     numberOfItems > 0 ? (
@@ -36,10 +41,9 @@ const ShoppingCartIcon: React.FC<ShoppingCartIconProps> = ({
         {numberOfItems}
       </span>
     ) : null;
-
   return (
     <div style={{ position: "relative" }}>
-      <Link to="/shopping-cart" style={linkStyle}>
+      <Link to="/shopping-cart" style={getlinkStyle(transparent)}>
         🛒
         {numberIcon}
       </Link>
