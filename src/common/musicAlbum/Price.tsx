@@ -21,12 +21,19 @@ const getPriceStyle = (config: PriceStyleConfig) => {
   };
 };
 
-const Price: React.FC<PriceProps> = ({ value, percentDiscount }) => {
-  const valueAfterDiscount = percentDiscount
-    ? value - (value * percentDiscount) / 100
+const getPriceAfterDiscount = (
+  basePrice: number,
+  percentDiscount: number | undefined
+) => {
+  const priceAfterDiscount = percentDiscount
+    ? basePrice - (basePrice * percentDiscount) / 100
     : null;
 
-  const valueAfterDiscountNormalized = valueAfterDiscount?.toFixed(2);
+  return priceAfterDiscount?.toFixed(2);
+};
+
+const Price: React.FC<PriceProps> = ({ value, percentDiscount }) => {
+  const valueAfterDiscount = getPriceAfterDiscount(value, percentDiscount);
 
   const basePriceStyle = getPriceStyle({ strikeThrough: !!valueAfterDiscount });
   const discountedPriceStyle = getPriceStyle({
@@ -36,7 +43,7 @@ const Price: React.FC<PriceProps> = ({ value, percentDiscount }) => {
   return (
     <span style={priceWrapperStyle}>
       <span style={basePriceStyle}>{value}</span>
-      <span style={discountedPriceStyle}>{valueAfterDiscountNormalized}</span>
+      <span style={discountedPriceStyle}>{valueAfterDiscount}</span>
     </span>
   );
 };
