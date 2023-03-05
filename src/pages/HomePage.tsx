@@ -15,7 +15,6 @@ function HomePage() {
   const coverImageFromGrzegorz =
     "https://s3.viva.pl/newsy/zenek-martyniuk-jamnik-484850-GALLERY_BIG.jpg";
 
-  const emptyDescription = { artist: "", title: "", price: 0 };
   return (
     <div className="App">
       <HPP>

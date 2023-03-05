@@ -49,6 +49,7 @@ const Album = ({
         artist={description.artist}
         price={description.price}
         percentDiscount={discountValue}
+        releaseDate={description.releaseDate}
       />
       <AddToCartButton onClick={addAlbumToCart} />
     </div>

@@ -23,6 +23,7 @@ export interface ItunesAlbumDataEntry {
   "im:artist": ObjectWithlabel;
   "im:price"?: PriceObject;
   "im:image"?: ObjectWithlabel[];
+  "im:releaseDate"?: ObjectWithlabel;
 }
 
 export const getAlbumsFromItunesAlbumData = (
@@ -39,6 +40,7 @@ export const getAlbumsFromItunesAlbumData = (
         title: itunesAlbum["im:name"].label,
         artist: itunesAlbum["im:artist"].label,
         price: Number(priceValueFromItunes),
+        releaseDate: itunesAlbum["im:releaseDate"]?.label,
       },
     };
   });
