@@ -1,0 +1,57 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Album.tsx matches snapshot 1`] = `
+<div>
+  <div
+    style="display: flex; align-items: center; margin: 30px 20px 30px 20px; font-size: 12px; background: rgb(53, 58, 69); padding: 10px;"
+  >
+    <div
+      style="display: flex; align-items: center; padding: 5px; margin: 30px; font-size: 30px; font-family: 'Brush Script MT', cursive; color: rgb(237, 92, 145);"
+    >
+      666
+    </div>
+    <div
+      style="position: relative;"
+    >
+      <div
+        style="width: 100px; min-width: 100px; height: 100px; background: blue; background-image: url(https://m.media-amazon.com/images/I/614ub5HQC2L.jpg); background-size: contain; border-radius: 50%; margin: 10px;"
+      />
+      <div
+        style="position: absolute; left: 0px; top: 0px;"
+      />
+    </div>
+    <div
+      style="margin: 8px;"
+    >
+      <div
+        style="color: rgba(216, 237, 92, 0.612); font-weight: bold; font-size: 18px; font-family: 'Courier New', monospace; width: 330px; text-overflow: ellipsis; overflow: hidden; white-space: nowrap;"
+      >
+        Placz Kotku
+      </div>
+      <div
+        style="margin: 10px; font-weight: 200; font-size: 14px; width: 330px;"
+      >
+        Behemot
+      </div>
+      <span
+        style="margin: 8px;"
+      >
+        <span
+          style="padding: 0px 5px; background-color: inherit;"
+        >
+          666
+        </span>
+        <span
+          data-testid="discounted-price"
+          style="padding: 0px 5px; background-color: inherit;"
+        />
+      </span>
+    </div>
+    <button
+      style="background: rgb(237, 92, 145); cursor: pointer; border-radius: 4px; padding: 12px;"
+    >
+      Add
+    </button>
+  </div>
+</div>
+`;

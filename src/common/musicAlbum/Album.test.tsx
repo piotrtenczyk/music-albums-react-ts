@@ -1,4 +1,6 @@
 import { render } from "@testing-library/react";
+import { Provider } from "react-redux";
+import store from "../../state/store";
 import Album from "./Album";
 
 describe("Album.tsx", () => {
@@ -10,15 +12,17 @@ describe("Album.tsx", () => {
     };
 
     const { container } = render(
-      <Album
-        id={"konkursowe123"}
-        number={666}
-        coverImageUrl={"https://m.media-amazon.com/images/I/614ub5HQC2L.jpg"}
-        description={testAlbumDescription}
-      />
+      <Provider store={store}>
+        <Album
+          id={"konkursowe123"}
+          number={666}
+          coverImageUrl={"https://m.media-amazon.com/images/I/614ub5HQC2L.jpg"}
+          description={testAlbumDescription}
+        />
+      </Provider>
     );
     expect(container).toMatchSnapshot();
-
-    // Zadanie : spojrz na error generowany przez ten test. Czy error daje nam znac, z czym wiaze sie problem?
   });
+
+  // Zadanie: jak mozemy przetestowac interakcje, kiedy klikniemy na "add" button?
 });
