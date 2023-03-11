@@ -1,33 +1,36 @@
-import { ADD_ITEM_TO_CART } from "./shoppingCartActions";
+import {
+  ADD_ITEM_TO_CART,
+  REMOVE_ALBUM_FROM_CART,
+} from "./shoppingCartActions";
 import shoppingCartReducer from "./shoppingCartReducer";
+
+const teddyBear = {
+  id: "5673",
+  name: "Teddy Bear",
+  price: 123,
+  quantity: 1,
+};
+
+const coalaBear = {
+  id: "xxx",
+  name: "Coala Bear",
+  price: 99.99,
+  quantity: 1,
+};
+
+const stateWithEmptyItems = {
+  numberOfItems: 0,
+  items: [],
+};
+
+const stateWithTeddyBear = {
+  ...stateWithEmptyItems,
+  numberOfItems: 1,
+  items: [teddyBear],
+};
 
 describe("shoppingCartReducer.ts", () => {
   describe(`${ADD_ITEM_TO_CART} test`, () => {
-    const teddyBear = {
-      id: "5673",
-      name: "Teddy Bear",
-      price: 123,
-      quantity: 1,
-    };
-
-    const coalaBear = {
-      id: "xxx",
-      name: "Coala Bear",
-      price: 99.99,
-      quantity: 1,
-    };
-
-    const stateWithEmptyItems = {
-      numberOfItems: 0,
-      items: [],
-    };
-
-    const stateWithTeddyBear = {
-      ...stateWithEmptyItems,
-      numberOfItems: 1,
-      items: [teddyBear],
-    };
-
     it(`return appropiate state after ${ADD_ITEM_TO_CART} action`, () => {
       const addItemAction = {
         type: ADD_ITEM_TO_CART as typeof ADD_ITEM_TO_CART,
@@ -68,6 +71,21 @@ describe("shoppingCartReducer.ts", () => {
       };
 
       expect(newState).toEqual(expectedState);
+    });
+  });
+
+  describe(`${REMOVE_ALBUM_FROM_CART} test`, () => {
+    it(`return appropiate state after ${REMOVE_ALBUM_FROM_CART} action`, () => {
+      const removeItemAction = {
+        type: REMOVE_ALBUM_FROM_CART as typeof REMOVE_ALBUM_FROM_CART,
+        id: teddyBear.id,
+      };
+      const newState = shoppingCartReducer(
+        stateWithTeddyBear,
+        removeItemAction
+      );
+
+      expect(newState).toEqual(stateWithEmptyItems);
     });
   });
 });
