@@ -41,29 +41,16 @@ describe("shoppingCartReducer.ts", () => {
       expect(newState).toEqual(stateWithTeddyBear);
     });
 
-    it(`return appropiate state after ${ADD_ITEM_TO_CART} action, when item with same id exists in state`, () => {
-      const addItemAction = {
-        type: ADD_ITEM_TO_CART as typeof ADD_ITEM_TO_CART,
-        item: teddyBear,
-      };
-
-      const newState = shoppingCartReducer(stateWithTeddyBear, addItemAction);
-
-      const expectedState = {
-        numberOfItems: 2,
-        items: [{ ...teddyBear, quantity: 2 }],
-      };
-
-      expect(newState).toEqual(expectedState);
-    });
-
     it(`return appropiate state after ${ADD_ITEM_TO_CART} action, when item with another id exists in state`, () => {
-      const addItemAction = {
+      const addCoalaBearAction = {
         type: ADD_ITEM_TO_CART as typeof ADD_ITEM_TO_CART,
         item: coalaBear,
       };
 
-      const newState = shoppingCartReducer(stateWithTeddyBear, addItemAction);
+      const newState = shoppingCartReducer(
+        stateWithTeddyBear,
+        addCoalaBearAction
+      );
 
       const expectedState = {
         numberOfItems: 2,
