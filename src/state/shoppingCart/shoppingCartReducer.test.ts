@@ -35,14 +35,7 @@ describe("shoppingCartReducer.ts", () => {
       };
 
       const newState = shoppingCartReducer(stateWithEmptyItems, addItemAction);
-
-      //oczekiwany stan po teście
-      const expectedState = {
-        numberOfItems: 1,
-        items: [teddyBear],
-      };
-
-      expect(newState).toEqual(expectedState);
+      expect(newState).toEqual(stateWithTeddyBear);
     });
 
     it(`return appropiate state after ${ADD_ITEM_TO_CART} action, when item with same id exists in state`, () => {
