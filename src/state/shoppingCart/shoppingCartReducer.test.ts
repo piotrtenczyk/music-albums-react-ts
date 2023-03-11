@@ -32,12 +32,15 @@ const stateWithTeddyBear = {
 describe("shoppingCartReducer.ts", () => {
   describe(`${ADD_ITEM_TO_CART} test`, () => {
     it(`return appropiate state after ${ADD_ITEM_TO_CART} action`, () => {
-      const addItemAction = {
+      const addTeddyBearAction = {
         type: ADD_ITEM_TO_CART as typeof ADD_ITEM_TO_CART,
         item: teddyBear,
       };
 
-      const newState = shoppingCartReducer(stateWithEmptyItems, addItemAction);
+      const newState = shoppingCartReducer(
+        stateWithEmptyItems,
+        addTeddyBearAction
+      );
       expect(newState).toEqual(stateWithTeddyBear);
     });
 
