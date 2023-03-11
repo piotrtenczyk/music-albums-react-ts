@@ -1,39 +1,5 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`ItunesAlbumList.tsx Matches snapshot when ? 1`] = `
-<div>
-  <div
-    style="margin-top: 30px; margin-bottom: 40px; text-align: center; font-family: 'Courier New', monospace; color: rgba(255, 255, 255, 0.7);"
-  >
-    Top Albums
-  </div>
-  <div
-    style="text-align: center; margin-top: 100px;"
-  >
-    <div
-      class="loader"
-    />
-  </div>
-</div>
-`;
-
-exports[`ItunesAlbumList.tsx Matches snapshot when api data is not loaded yet 1`] = `
-<div>
-  <div
-    style="margin-top: 30px; margin-bottom: 40px; text-align: center; font-family: 'Courier New', monospace; color: rgba(255, 255, 255, 0.7);"
-  >
-    Top Albums
-  </div>
-  <div
-    style="text-align: center; margin-top: 100px;"
-  >
-    <div
-      class="loader"
-    />
-  </div>
-</div>
-`;
-
 exports[`ItunesAlbumList.tsx Matches snapshot when api data is still loading 1`] = `
 <div>
   <div
@@ -42,6 +8,7 @@ exports[`ItunesAlbumList.tsx Matches snapshot when api data is still loading 1`]
     Top Albums
   </div>
   <div
+    data-testid="loader"
     style="text-align: center; margin-top: 100px;"
   >
     <div

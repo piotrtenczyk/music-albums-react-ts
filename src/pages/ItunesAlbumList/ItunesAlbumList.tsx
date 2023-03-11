@@ -43,7 +43,6 @@ const ItunesAlbumList = () => {
       const fetchedData =
         (await fetchResponse.json()) as ItunesTopAlbumsResponseData;
 
-      console.log({ fetchedData });
       setAlbumDataEntries(fetchedData.feed.entry);
     };
 

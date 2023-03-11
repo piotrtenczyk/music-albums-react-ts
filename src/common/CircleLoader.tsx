@@ -8,9 +8,10 @@ const loaderContainerStyle = {
 };
 
 const CircleLoader = ({ show }: CircleLoaderProps) => {
+  // console.log("show", show);
   if (!show) return null;
   return (
-    <div style={loaderContainerStyle}>
+    <div data-testid="loader" style={loaderContainerStyle}>
       <div className="loader"></div>
     </div>
   );

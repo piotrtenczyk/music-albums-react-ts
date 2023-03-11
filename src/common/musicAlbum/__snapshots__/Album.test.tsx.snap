@@ -3,6 +3,7 @@
 exports[`Album.tsx matches snapshot 1`] = `
 <div>
   <div
+    data-testid="album"
     style="display: flex; align-items: center; margin: 30px 20px 30px 20px; font-size: 12px; background: rgb(53, 58, 69); padding: 10px;"
   >
     <div

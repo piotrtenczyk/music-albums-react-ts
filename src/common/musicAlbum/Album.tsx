@@ -41,7 +41,7 @@ const Album = ({
   };
 
   return (
-    <div style={albumStyle}>
+    <div data-testid="album" style={albumStyle}>
       <AlbumNumber value={number} />
       <AlbumImage imageUrl={coverImageUrl} salesStickerValue={discountValue} />
       <AlbumDescription
