@@ -1,0 +1,11 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`AddToCartButton.tsx matches snapshot 1`] = `
+<div>
+  <button
+    style="background: rgb(237, 92, 145); cursor: pointer; border-radius: 4px; padding: 12px;"
+  >
+    Add
+  </button>
+</div>
+`;
