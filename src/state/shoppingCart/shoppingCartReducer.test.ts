@@ -76,16 +76,54 @@ describe("shoppingCartReducer.ts", () => {
 
   describe(`${REMOVE_ALBUM_FROM_CART} test`, () => {
     it(`return appropiate state after ${REMOVE_ALBUM_FROM_CART} action`, () => {
-      const removeItemAction = {
+      const removeTeddyBearAction = {
         type: REMOVE_ALBUM_FROM_CART as typeof REMOVE_ALBUM_FROM_CART,
         id: teddyBear.id,
       };
       const newState = shoppingCartReducer(
         stateWithTeddyBear,
-        removeItemAction
+        removeTeddyBearAction
       );
 
       expect(newState).toEqual(stateWithEmptyItems);
+    });
+
+    it(`return appropiate state after ${REMOVE_ALBUM_FROM_CART} action when there are two items with the same id`, () => {
+      const stateWithTwoTeddyBears = {
+        numberOfItems: 2,
+        items: [{ ...teddyBear, quantity: 2 }],
+      };
+
+      const removeTeddyBearAction = {
+        type: REMOVE_ALBUM_FROM_CART as typeof REMOVE_ALBUM_FROM_CART,
+        id: teddyBear.id,
+      };
+
+      const newState = shoppingCartReducer(
+        stateWithTwoTeddyBears,
+        removeTeddyBearAction
+      );
+
+      expect(newState).toEqual(stateWithEmptyItems);
+    });
+
+    it(`return appropiate state after ${REMOVE_ALBUM_FROM_CART} action when there are two items with different id`, () => {
+      const stateWithTwoDifferentBears = {
+        numberOfItems: 2,
+        items: [teddyBear, coalaBear],
+      };
+
+      const removeKolaBearAction = {
+        type: REMOVE_ALBUM_FROM_CART as typeof REMOVE_ALBUM_FROM_CART,
+        id: coalaBear.id,
+      };
+
+      const newState = shoppingCartReducer(
+        stateWithTwoDifferentBears,
+        removeKolaBearAction
+      );
+
+      expect(newState).toEqual(stateWithTeddyBear);
     });
   });
 });
