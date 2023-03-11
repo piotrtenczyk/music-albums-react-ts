@@ -72,6 +72,29 @@ describe("shoppingCartReducer.ts", () => {
 
       expect(newState).toEqual(expectedState);
     });
+
+    it(`return appropiate state after ${ADD_ITEM_TO_CART} action, when item with same id exists, and another item with a different id`, () => {
+      const stateWithTwoDifferentBears = {
+        numberOfItems: 2,
+        items: [teddyBear, coalaBear],
+      };
+
+      const addTeddyBearAction = {
+        type: ADD_ITEM_TO_CART as typeof ADD_ITEM_TO_CART,
+        item: teddyBear,
+      };
+      const newState = shoppingCartReducer(
+        stateWithTwoDifferentBears,
+        addTeddyBearAction
+      );
+
+      const expectedState = {
+        numberOfItems: 3,
+        items: [{ ...teddyBear, quantity: 2 }, coalaBear],
+      };
+
+      expect(newState).toEqual(expectedState);
+    });
   });
 
   describe(`${REMOVE_ALBUM_FROM_CART} test`, () => {
