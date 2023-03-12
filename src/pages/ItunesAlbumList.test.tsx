@@ -67,7 +67,7 @@ const functionReturningJson = () => {
 };
 
 const mockedFetch = () => {
-  const response = { json: functionReturningJson } as Response;
+  const response = { json: functionReturningJson };
 
   return new Promise((resolve) => {
     setTimeout(() => {
