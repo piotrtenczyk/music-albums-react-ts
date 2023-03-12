@@ -4,10 +4,10 @@ exports[`Album.tsx matches snapshot 1`] = `
 <div>
   <div
     data-testid="album"
-    style="display: flex; align-items: center; margin: 30px 20px 30px 20px; font-size: 12px; background: rgb(53, 58, 69); padding: 10px;"
+    style="display: flex; justify-content: space-between; align-items: center; margin: 30px 20px 30px 20px; font-size: 12px; background: rgb(53, 58, 69); padding: 10px;"
   >
     <div
-      style="display: flex; align-items: center; padding: 5px; margin: 30px; font-size: 30px; font-family: 'Brush Script MT', cursive; color: rgb(237, 92, 145);"
+      style="display: flex; align-items: center; padding: 5px; margin: 5px; font-size: 30px; font-family: 'Brush Script MT', cursive; color: rgb(237, 92, 145);"
     >
       666
     </div>
@@ -47,6 +47,16 @@ exports[`Album.tsx matches snapshot 1`] = `
           style="padding: 0px 5px; background-color: inherit;"
         />
       </span>
+    </div>
+    <div
+      style="position: relative; padding: 5px;"
+    >
+      <a
+        href="/shopping-cart"
+        style="text-decoration: none; color: white; opacity: 0.5; font-size: 36px;"
+      >
+        🛒
+      </a>
     </div>
     <button
       style="background: rgb(237, 92, 145); cursor: pointer; border-radius: 4px; padding: 12px;"

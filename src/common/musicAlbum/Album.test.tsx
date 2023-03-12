@@ -1,5 +1,6 @@
 import { render } from "@testing-library/react";
 import { Provider } from "react-redux";
+import { BrowserRouter } from "react-router-dom";
 import store from "../../state/store";
 import Album from "./Album";
 
@@ -19,7 +20,8 @@ describe("Album.tsx", () => {
           coverImageUrl={"https://m.media-amazon.com/images/I/614ub5HQC2L.jpg"}
           description={testAlbumDescription}
         />
-      </Provider>
+      </Provider>,
+      { wrapper: BrowserRouter }
     );
     expect(container).toMatchSnapshot();
   });

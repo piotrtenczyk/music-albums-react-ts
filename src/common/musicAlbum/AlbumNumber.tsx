@@ -2,7 +2,7 @@ const numberStyle = {
   display: "flex",
   alignItems: "center",
   padding: "5px",
-  margin: "30px",
+  margin: "5px",
   fontSize: "30px",
   fontFamily: "'Brush Script MT', cursive",
   color: "#ed5c91",

@@ -5,6 +5,7 @@ const getlinkStyle = (isTransparent: boolean | undefined) => {
     textDecoration: "none",
     color: "white",
     opacity: isTransparent ? "0.5" : "1",
+    fontSize: "36px",
   };
 };
 
@@ -42,7 +43,7 @@ const ShoppingCartIcon: React.FC<ShoppingCartIconProps> = ({
       </span>
     ) : null;
   return (
-    <div style={{ position: "relative" }}>
+    <div style={{ position: "relative", padding: "5px" }}>
       <Link to="/shopping-cart" style={getlinkStyle(transparent)}>
         🛒
         {numberIcon}

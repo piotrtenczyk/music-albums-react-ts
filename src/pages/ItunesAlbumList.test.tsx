@@ -10,6 +10,11 @@ import ItunesAlbumList, {
   ItunesTopAlbumsResponseData,
 } from "./ItunesAlbumList/ItunesAlbumList";
 import { act } from "react-dom/test-utils";
+import {
+  BrowserRouter,
+  createBrowserRouter,
+  RouterProvider,
+} from "react-router-dom";
 
 const storeWithoutLogger = configureStore({
   reducer: rootReducer,
@@ -84,7 +89,8 @@ describe("ItunesAlbumList.tsx", () => {
     const { container } = render(
       <Provider store={storeWithoutLogger}>
         <ItunesAlbumList />
-      </Provider>
+      </Provider>,
+      { wrapper: BrowserRouter }
     );
     expect(container).toMatchSnapshot();
   });
@@ -93,7 +99,8 @@ describe("ItunesAlbumList.tsx", () => {
     const { getByTestId } = render(
       <Provider store={storeWithoutLogger}>
         <ItunesAlbumList />
-      </Provider>
+      </Provider>,
+      { wrapper: BrowserRouter }
     );
 
     await waitFor(

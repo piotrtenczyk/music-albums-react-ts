@@ -1,12 +1,14 @@
 import { ADD_ITEM_TO_CART } from "../../state/shoppingCart/shoppingCartActions";
-import { useAppDispatch } from "../../state/stateHooks";
+import { useAppDispatch, useAppSelector } from "../../state/stateHooks";
 import AddToCartButton from "../AddToCartButton";
+import ShoppingCartIcon from "../ShoppingCartIcon";
 import AlbumDescription, { AlbumDescriptionProps } from "./AlbumDescription";
 import AlbumImage from "./AlbumImage";
 import AlbumNumber from "./AlbumNumber";
 
 const albumStyle = {
   display: "flex",
+  justifyContent: "space-between",
   alignItems: "center",
   margin: "30px 20px 30px 20px",
   fontSize: "12px",
@@ -31,6 +33,10 @@ const Album = ({
 }: AlbumProps) => {
   const dispatch = useAppDispatch();
 
+  const quantityOfThisAlbumInShoppingCart = useAppSelector(
+    (state) => state.shoppingCart.items.find((i) => i.id === id)?.quantity ?? 0
+  );
+
   const addAlbumToCart = () => {
     const cartItem = {
       name: description.title,
@@ -50,6 +56,10 @@ const Album = ({
         price={description.price}
         percentDiscount={discountValue}
         releaseDate={description.releaseDate}
+      />
+      <ShoppingCartIcon
+        numberOfItems={quantityOfThisAlbumInShoppingCart}
+        transparent
       />
       <AddToCartButton onClick={addAlbumToCart} />
     </div>

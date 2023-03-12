@@ -58,7 +58,7 @@ const Page = () => {
         <Link to="/" style={headerLinkStyle}>
           Music Albums
         </Link>
-        <ShoppingCartIcon numberOfItems={numberOfItems} transparent />
+        <ShoppingCartIcon numberOfItems={numberOfItems} />
       </header>
       <NavBar />
       <section style={sectionStyle}>
