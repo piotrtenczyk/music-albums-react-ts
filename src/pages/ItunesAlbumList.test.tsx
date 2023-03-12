@@ -6,14 +6,84 @@ import {
 } from "@testing-library/react";
 import { Provider } from "react-redux";
 import rootReducer from "../state/reducers";
-import ItunesAlbumList from "./ItunesAlbumList/ItunesAlbumList";
+import ItunesAlbumList, {
+  ItunesTopAlbumsResponseData,
+} from "./ItunesAlbumList/ItunesAlbumList";
+import { act } from "react-dom/test-utils";
 
 const storeWithoutLogger = configureStore({
   reducer: rootReducer,
   middleware: (getDefaultMiddleware) => getDefaultMiddleware(),
 });
 
-jest.setTimeout(10000);
+// global.fetch = jest.fn(() =>
+//   Promise.resolve({
+//     json: () => Promise.resolve({ rates: { CAD: 1.42 } }),
+//   })
+// );
+
+const itsMyLifeAlbum = {
+  id: {
+    attributes: {
+      "im:id": "123",
+    },
+  },
+  "im:name": {
+    label: "Its my life",
+  },
+  "im:artist": {
+    label: "DJ BOBO",
+  },
+  "im:price": {
+    label: "$1.99",
+    attributes: {
+      amount: "1.99",
+    },
+  },
+};
+
+const thrillerAlbum = {
+  id: {
+    attributes: {
+      "im:id": "222",
+    },
+  },
+  "im:name": {
+    label: "Thriller",
+  },
+  "im:artist": {
+    label: "Michael Jackson",
+  },
+  "im:price": {
+    label: "$11.99",
+    attributes: {
+      amount: "11.99",
+    },
+  },
+};
+
+const functionReturningJson = () => {
+  const data: ItunesTopAlbumsResponseData = {
+    feed: {
+      entry: [itsMyLifeAlbum, thrillerAlbum],
+    },
+  };
+
+  return data;
+};
+
+const mockedFetch = () => {
+  const response = { json: functionReturningJson } as Response;
+
+  return new Promise((resolve) => {
+    setTimeout(() => {
+      resolve(response);
+    }, 1);
+  });
+};
+
+// TODO: global.fetch = jest.fn(mockedFetch) as jest.Mock;
+global.fetch = mockedFetch as jest.Mock;
 
 describe("ItunesAlbumList.tsx", () => {
   it("Matches snapshot when api data is still loading", () => {
@@ -26,7 +96,7 @@ describe("ItunesAlbumList.tsx", () => {
   });
 
   it("loaded appropriate albums when api data has been loaded", async () => {
-    const { debug, getByTestId } = render(
+    const { getByTestId } = render(
       <Provider store={storeWithoutLogger}>
         <ItunesAlbumList />
       </Provider>
@@ -54,9 +124,6 @@ describe("ItunesAlbumList.tsx", () => {
     // Zadanie1: czy mozemy znalezc i zastosowac lepszy selector? np: getByTestId  (zgodnie z dokumentacja RTL) ?
     const albumElements = document.querySelectorAll("div[data-testid='album']");
 
-    // Zadanie2: Prawdziwe api iTunes nie zawsze zwróci nam dokładnie 58 albumów
-    // Q! Jak moglibysmy w prostych słowach opisać, jak mozna by wstrzyknac stala liczbe wynikow
-    // (i jednoczesnie uniknac kontaktu z serverem, co zajmuje az 2000 millisekund)
-    expect(albumElements).toHaveLength(58);
+    expect(albumElements).toHaveLength(2);
   });
 });

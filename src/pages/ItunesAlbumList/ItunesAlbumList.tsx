@@ -18,7 +18,7 @@ const addDelay = () => {
   );
 };
 
-interface ItunesTopAlbumsResponseData {
+export interface ItunesTopAlbumsResponseData {
   feed: {
     entry: ItunesAlbumDataEntry[];
   };
@@ -37,9 +37,6 @@ const ItunesAlbumList = () => {
       const fetchResponse = await fetch(
         "https://itunes.apple.com/us/rss/topalbums/limit=100/json"
       );
-
-      await addDelay();
-
       const fetchedData =
         (await fetchResponse.json()) as ItunesTopAlbumsResponseData;
 
@@ -48,7 +45,7 @@ const ItunesAlbumList = () => {
 
     fetchAndSetAlbums();
     dispatch(fetchSalesIfNotPresent);
-  }, [dispatch]);
+  }, []);
 
   const albumData = albumDataEntries
     ? getAlbumsFromItunesAlbumData(albumDataEntries)
