@@ -16,12 +16,6 @@ const storeWithoutLogger = configureStore({
   middleware: (getDefaultMiddleware) => getDefaultMiddleware(),
 });
 
-// global.fetch = jest.fn(() =>
-//   Promise.resolve({
-//     json: () => Promise.resolve({ rates: { CAD: 1.42 } }),
-//   })
-// );
-
 const itsMyLifeAlbum = {
   id: {
     attributes: {
@@ -82,7 +76,7 @@ const mockedFetch = () => {
   });
 };
 
-// TODO: global.fetch = jest.fn(mockedFetch) as jest.Mock;
+// TODO: figure out why : global.fetch = jest.fn(mockedFetch) as jest.Mock;   doesn't work.
 global.fetch = mockedFetch as jest.Mock;
 
 describe("ItunesAlbumList.tsx", () => {
