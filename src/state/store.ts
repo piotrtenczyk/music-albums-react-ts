@@ -1,9 +1,11 @@
 import { configureStore } from "@reduxjs/toolkit";
+import logger from "redux-logger";
 import shoppingCart from "./shoppingCartSlice";
 import { TypedUseSelectorHook, useDispatch, useSelector } from "react-redux";
 
 const store = configureStore({
   reducer: shoppingCart.reducer,
+  middleware: [logger],
 });
 
 export default store;
