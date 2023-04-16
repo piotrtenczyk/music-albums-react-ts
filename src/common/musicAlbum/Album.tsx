@@ -1,5 +1,6 @@
 import { addAlbumToBasket } from "../../state/shoppingCartSlice";
 import { useAppDispatch } from "../../state/store";
+import AddToCartButton from "../AddToCartButton";
 import AlbumDescription, { AlbumDescriptionProps } from "./AlbumDescription";
 import AlbumImage from "./AlbumImage";
 import AlbumNumber from "./AlbumNumber";
@@ -37,7 +38,7 @@ const Album = ({ number, coverImageUrl, description }: AlbumProps) => {
         artist={description.artist}
         price={description.price}
       />
-      <button onClick={onButtonClick}>guziczek</button>
+      <AddToCartButton onClick={onButtonClick} />
     </div>
   );
 };
