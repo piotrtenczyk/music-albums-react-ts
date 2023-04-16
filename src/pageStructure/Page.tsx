@@ -46,7 +46,9 @@ const headerLinkStyle = {
 
 const Page = () => {
   const isBigScreen = useMediaQuery({ query: "(min-width: 800px)" });
-  const value = useAppSelector((state) => state.items.length);
+  const numberOfAlbumsInShoppingCart = useAppSelector(
+    (state) => state.items.length
+  );
 
   return (
     <div style={getPageStyle(isBigScreen)}>
@@ -54,7 +56,7 @@ const Page = () => {
         <Link to="/" style={headerLinkStyle}>
           Music Albums
         </Link>
-        <span>{value}</span>
+        <span>{numberOfAlbumsInShoppingCart}</span>
       </header>
       <NavBar />
       <section style={sectionStyle}>

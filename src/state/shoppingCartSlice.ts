@@ -21,7 +21,7 @@ const shoppingCart = createSlice({
       state: ShoppingCartState,
       action: PayloadAction<{ album: Album }>
     ) => {
-      state.items = [...state.items, action.payload.album];
+      state.items.push(action.payload.album);
     },
   },
 });
