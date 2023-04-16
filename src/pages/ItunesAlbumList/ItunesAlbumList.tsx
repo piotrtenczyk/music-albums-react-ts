@@ -48,7 +48,7 @@ const ItunesAlbumList = () => {
     ? getAlbumsFromItunesAlbumData(albumDataEntries)
     : [];
 
-  const albumComponents = albumData?.map((album) => {
+  const albumComponents = albumData.map((album) => {
     return (
       <Album
         key={album.number}
