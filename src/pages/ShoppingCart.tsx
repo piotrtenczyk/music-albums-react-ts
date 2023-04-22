@@ -1,3 +1,4 @@
+import PageTitle from "../common/PageTitle";
 import ShoppingCartItems from "../common/ShoppingCartItems";
 import { useAppSelector } from "../state/store";
 
@@ -21,7 +22,7 @@ const ShoppingCart: React.FC<{}> = () => {
 
   return (
     <div>
-      <div>your shopping cart</div>
+      <PageTitle title="Your Shopping Cart" />
       <ShoppingCartItems items={shoppingCartItems} />
     </div>
   );
