@@ -3,9 +3,6 @@ import { Link, Outlet } from "react-router-dom";
 import { useMediaQuery } from "react-responsive";
 import { useAppSelector } from "../state/store";
 import ShoppingCartIcon from "../common/ShoppingCartIcon";
-import RenderMessage from "../common/exercises/RenderMessage";
-import RenderMessage2 from "../common/exercises/RenderMessage2";
-import RenderMessages from "../common/exercises/RenderMessages";
 
 const getPageStyle = (isBigScreen: boolean) => {
   const bigScreenAreas = `
@@ -56,9 +53,6 @@ const Page = () => {
   return (
     <div style={getPageStyle(isBigScreen)}>
       <header style={headerStyle}>
-        <RenderMessage message="hello my message" />
-        <RenderMessage2>my message here</RenderMessage2>
-        <RenderMessages messages={["hello my message", "hello obiad"]} />
         <Link to="/" style={headerLinkStyle}>
           Music Albums
         </Link>

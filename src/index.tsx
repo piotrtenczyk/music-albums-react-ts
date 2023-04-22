@@ -8,6 +8,7 @@ import Page from "./pageStructure/Page";
 import ItunesAlbumList from "./pages/ItunesAlbumList/ItunesAlbumList";
 import OurAlbums from "./pages/OurAlbums";
 import store from "./state/store";
+import ShoppingCart from "./pages/ShoppingCart";
 
 const router = createBrowserRouter([
   {
@@ -25,6 +26,10 @@ const router = createBrowserRouter([
       {
         path: "/our-albums",
         element: <OurAlbums />,
+      },
+      {
+        path: "/shopping-cart",
+        element: <ShoppingCart />,
       },
     ],
   },
