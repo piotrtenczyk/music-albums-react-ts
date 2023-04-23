@@ -1,4 +1,6 @@
-import { incremented, useAppDispatch, useAppSelector } from "../..";
+import { addAlbumToBasket } from "../../state/shoppingCartSlice";
+import { useAppDispatch } from "../../state/store";
+import AddToCartButton from "../AddToCartButton";
 import AlbumDescription, { AlbumDescriptionProps } from "./AlbumDescription";
 import AlbumImage from "./AlbumImage";
 import AlbumNumber from "./AlbumNumber";
@@ -20,11 +22,11 @@ export interface AlbumProps {
 
 const Album = ({ number, coverImageUrl, description }: AlbumProps) => {
   const dispatch = useAppDispatch();
-  const value = useAppSelector((state) => state.value);
 
   const onButtonClick = () => {
-    console.log("click");
-    dispatch(incremented());
+    const albumItem = { title: description.title, price: description.price };
+
+    dispatch(addAlbumToBasket({ album: albumItem }));
   };
 
   return (
@@ -36,8 +38,7 @@ const Album = ({ number, coverImageUrl, description }: AlbumProps) => {
         artist={description.artist}
         price={description.price}
       />
-      <button onClick={onButtonClick}>guziczek</button>
-      <span>{value}</span>
+      <AddToCartButton onClick={onButtonClick} />
     </div>
   );
 };
